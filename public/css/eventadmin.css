@@ -1,0 +1,157 @@
+.image-v{
+    /*animation: shake 0.5s ease-in-out infinite alternate;*/
+    animation: jiggle 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes jiggle {
+  from {
+    transform: rotateZ(-5deg);
+  }
+  to {
+    transform: rotateZ(5deg);
+  }
+}
+.update-content {
+  padding: 15px;
+}
+
+
+.update-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px; 
+}
+
+.upload-update {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-update:hover {
+  background-color: #555;
+}
+
+.update-event-content {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.update-event-label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.update-event-title,
+.update-event-bubtitle,
+.update-event-content textarea,
+.update-event-content input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.update-event-content textarea {
+  resize: vertical;
+}
+
+.update-event-content span {
+  color: red;
+  font-size: 14px;
+}
+
+.event-i-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.event-i-academias,
+.event-i-info {
+  min-height: 50px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.x{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 42%;
+  top: -10%;
+  z-index: 3;
+  background-color: rgb(255, 255, 255);
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.delete{
+  /*animation: shake 0.5s ease-in-out infinite alternate;*/
+  animation: jiggle-delte 0.1s ease-in-out infinite alternate;
+}
+
+@keyframes jiggle-delte {
+from {
+  transform: rotateZ(-5deg);
+}
+to {
+  transform: rotateZ(5deg);
+}
+}
+
+.event-i-image-s{
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+.button-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.upload-image{
+  width: auto;
+  height: auto;
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: rgb(9, 82, 9);
+  color: white;
+  margin: 15px;
+}
+
+.upload-update{
+  width: auto;
+  height: auto;
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: rgb(97, 3, 3);
+  color: white;
+  margin: 15px;
+}
+

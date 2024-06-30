@@ -1,0 +1,65 @@
+.event-i{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    padding: 3%;
+}
+
+.event-i-title{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; 
+}
+.event-i-sub{
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 8px; 
+}
+.event-i-descripcion{
+    font-size: 16px;
+    line-height: 1.5;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.event-i-details{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.event-i-academias,.event-i-info {
+    min-height: 50px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event-i-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.event-i-image {
+    max-width: 30%;
+    height: auto;
+}
+
+.event-i-image {
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.event-i-image:hover {
+    transform: scale(1.05);
+}
