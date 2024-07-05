@@ -12,6 +12,13 @@
             </form>
         </div>
         <div class="update-content">
+            <form action="{{route('Event.updatefinished', $event->id)}}" method="POST">
+                @csrf
+                @method('put')
+                <button class="tarjet-event-button" type="submit">Marcar evento como terminado</button>
+            </form>
+        </div>
+        <div class="update-content">
             <form action="{{route('Event.updateProcess', $event->id)}}" method="post">
                 @csrf
                 @method('put')

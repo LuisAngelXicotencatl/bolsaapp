@@ -28,14 +28,28 @@ Route::get('/', function () {
 |
 */
 Route::get("/", [EventController::class, "default"]) -> name('Event.default');
+/*Perfil administrador*/
 Route::get("inicio", [EventController::class, "index"]) -> name('Event.index');
+/*Mostrar detalles de evento*/
 Route::get("inicio/event/{id}", [EventController::class, "show"]) -> name('Event.show');
+/*Formulario para actualizar evento*/
 Route::get("inicio/event/update/{id}", [EventController::class, "update"]) -> name('Event.update');
+/*nActualizar evento*/
 Route::put("inicio/event/update/Process/{id}", [EventController::class, 'updateProcess'])->name('Event.updateProcess');
+/*Eliminar evento*/
 Route::delete("inicio/event/destroy/Process/{id}", [EventController::class, 'destroy'])->name('event.destroy');
+/*Actualizar evento futuro*/
 Route::get("inicio/event/soon/update/{id}", [EventController::class, "soonUpdate"]) -> name('Event.soonUpdate');
+/*Ver horario de evento*/
 Route::get("inicio/event/date/{id}", [EventController::class, "dates"]) -> name('Event.dates');
+/*Eliminar horario para evento*/
 Route::delete("inicio/event/date/destroy/Process/{id}", [EventController::class, 'destroyDate'])->name('event.destroyDate');
+/*nuevo horario para evento formulario*/
+Route::get("inicio/event/date/new/{id}", [EventController::class, "datesNew"]) -> name('date.new');
+/*Agregar fecha*/
+Route::put("inicio/event/newDate/Process/{id}", [EventController::class, 'newDateProcess'])->name('Event.newdateProcess');
+/*Marcar evento como terminado*/
+Route::put("inicio/event/finished/Process/{id}", [EventController::class, 'updatefinished'])->name('Event.updatefinished');
 
 
 

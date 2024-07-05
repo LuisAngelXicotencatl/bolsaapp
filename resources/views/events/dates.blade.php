@@ -16,6 +16,7 @@
                 </li>
             </div>
         </div>
+    <a href="{{route('date.new', $event->id)}}"><button class="tarjet-event-button-delete" type="submit">Nuevo horario</button></a>
     <div class="eventos-title">Fechas disponibles</div>
         <section class="soon">
             @foreach($eventDates as $eventDate)
@@ -38,5 +39,28 @@
                 </div>
             @endforeach
         </section>
+    </div>
+    <div class="eventos-title">Fechas tomadas</div>
+        <section class="soon">
+            @foreach($eventDatestake as $eventDatestake)
+                <div class="soon-event">
+                    <div class="soon-event-date">
+                        <div class="soon-event-info-label">{{ $eventDatestake->date->fecha }}</div>
+                        <div class="soon-event-info-label">{{ $eventDatestake->date->hora }}</div>
+                    </div>
+                    <div class="soon-event-info">
+                        <div class="soon-event-info-label">{{$eventDatestake->date->empresa}}</div>
+                        <div class="tarjet-event-buttons">
+                            <form action="{{route('event.destroyDate', $eventDatestake->date->id)}}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button class="tarjet-event-button-deletenew" type="submit">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </section>
+    </div>
 </main>
 @endsection
