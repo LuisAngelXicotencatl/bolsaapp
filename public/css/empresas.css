@@ -1,0 +1,71 @@
+/* resources/css/custom.css */
+
+.eventos-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.empresas-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.empresa-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.2s;
+}
+
+.empresa-card:hover {
+    transform: translateY(-5px);
+}
+
+.empresa-card-header {
+    background-color: #f5f5f5;
+    padding: 15px;
+    text-align: center;
+}
+
+.empresa-name {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.empresa-card-body {
+    padding: 15px;
+}
+
+.empresa-description {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.empresa-card-buttons {
+    text-align: center;
+}
+
+.empresa-card-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    margin: 4px 2px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.empresa-card-button:hover {
+    background-color: #0056b3;
+}

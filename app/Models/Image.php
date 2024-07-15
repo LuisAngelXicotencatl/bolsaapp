@@ -17,4 +17,8 @@ class Image extends Model
     {
         return $this->belongsToMany(Event::class);
     }
+
+    public function EventImage() {
+        return $this->hasMany(EventImage::class);
+    }
 }

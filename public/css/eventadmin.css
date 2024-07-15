@@ -44,8 +44,9 @@
 }
 
 .update-event-label {
+  min-width: 20%;
   font-size: 16px;
-  color: #333;
+  color: #0e0e0e;
   margin-bottom: 5px;
 }
 
@@ -53,7 +54,7 @@
 .update-event-bubtitle,
 .update-event-content textarea,
 .update-event-content input {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;

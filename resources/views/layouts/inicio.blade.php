@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/event.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>@yield('title')</title>
 </head>
 <body>
     <header>
         <nav class="nav">
-            <img class="imagelogo" src="images/logoFcc.png">
+            <div class="nav-left">
+                <a href="{{route('Event.default')}}"><img class="imagelogo" src="{{ asset('images/logoFcc.png') }}" alt="Logo FCC"></a>
+            </div>
             <section class="menu">
                 <a href="#nosotros" class="label">Nosotros</a>
                 <a href="#eventos" class="label">Eventos</a>
+                <a href="#cordinador" class="label">Noticias</a>
                 <a href="#cordinador" class="label">Cordinadora</a>
             </section>
             <a href="#empresas" id="vinculacion" class="label">Vinculacion</a>
-            <img class="imagelogo" id="imagelogo"src="images/vinculacionFcc.png">
+            <img class="imagelogo" id="imagelogo"src="{{ asset('images/logovfcc.png') }}">
         </nav>
         <script src="../js/menu.js"></script>
     </header>
@@ -40,7 +44,7 @@
             <div class="footer-info-title">Vinculación Facultad de Computación</div>
         </div>
         <div>
-            <a href="" class="footer-button"><button>Iniciar Sesión</button></a>
+            <a href="{{route('Event.index')}}" class="footer-button"><button>Iniciar sesión</button></a>
         </div>
     </footer>
 </body>

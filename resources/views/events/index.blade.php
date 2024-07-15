@@ -2,8 +2,7 @@
 @section('title', 'Cursos')
 @section("content")
 <main>
-    <div class="welcome">Bienvenido de regreso, Luis Angelsss.
-    </div>
+    <div class="welcome">Bienvenido de regreso, {{ Auth::user()->name}}.</div>
     <div class="eventos-title">Proximos eventos</div>
     <section class="soon">
         @foreach ($soons as $soon)
@@ -22,8 +21,7 @@
         @endforeach
     </section>
     <div class="eventos-title">Eventos pasados</div>
-
-    <section class="eventos">
+    <!--<section class="eventos">
     @foreach ($events as $event)
         <div class="tarjet-event" id="1">
             <div class="tarjet-event-name">{{$event->titulo}}</div>
@@ -31,9 +29,6 @@
             @foreach ($event->images as $image)
             <img class="tarjet-event-image" src="{{ $image->image }}">
             @endforeach
-            @if ($event->firstImage)
-                <img class="tarjet-event-image" src="{{ $event->firstImage->image }}">
-            @endif
             <div class="tarjet-event-buttons">
                 <a href="{{route('Event.update', $event->id)}}"><button class="tarjet-event-button-delete" id="delete">Modificar</button></a>
                 <a href="{{route('Event.show', $event->id)}}"><button class="tarjet-event-button">Ver</button></a>
@@ -41,11 +36,30 @@
             <script src="js/Quiz.js"></script>
         </div>
     @endforeach
+    </section>-->
+    <section class="eventos">
+        @foreach ($events as $event)
+            <div class="tarjet-event" id="1">
+                <div class="tarjet-event-name">{{$event->titulo}}</div>
+                <div class="tarjet-event-info">{{$event->subtitulo}} </div>
+                @if ($event->images->count() > 0)
+                    @php
+                        $imagePath = 'storage/' . str_replace('\\', '/', $event->images->first()->image);
+                    @endphp
+                    <img class="tarjet-event-image" src="{{ asset($imagePath) }}">
+                @endif
+                <div class="tarjet-event-buttons">
+                    <a href="{{route('Event.update', $event->id)}}"><button class="tarjet-event-button-delete" id="delete">Modificar</button></a>
+                    <a href="{{route('Event.show', $event->id)}}"><button class="tarjet-event-button">Ver</button></a>
+                </div>
+                <script src="{{ asset('js/Quiz.js') }}"></script>
+            </div>
+        @endforeach
     </section>
     <div class="tarjet-event-more">
         <button class="tarjet-event-button" id="verMasBtn">Ver más</button>
         <button class="tarjet-event-button" id="verMenosBtn">Ver menos</button>
     </div>
-    <script src="js/bucle.js"></script>
+    <script src="{{ asset('js/bucle.js ') }}"></script>
 </main>
 @endsection

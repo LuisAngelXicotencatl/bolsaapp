@@ -41,25 +41,5 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    /*protected function name(): Attribute
-    {
-        return new Attribute(
-            set: function($value){
-                return strtolower($value);
-            }
-        );
-    }*/
-    
-    
-    
-    /*protected function name()
-    {
-    return new Attribute(
-        function($value){
-            return strtolower($value);
-        }
-    );
-    }*/
+    ]; 
 }

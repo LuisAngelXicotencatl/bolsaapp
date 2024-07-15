@@ -1,26 +1,26 @@
 html {
     scroll-behavior: smooth;
 }
-  
+
 body::-webkit-scrollbar {
-    width: 3px;
+    width: 1px;
 }
-  
+
 body::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: #000000;
 }
-  
+
 body::-webkit-scrollbar-thumb {
-    background-color: #cfcbcb;
+    background-color: #131010;
     border-radius: 1px;
 }
-  
+
 body::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+    background-color: #ffffff;
 }
-  
+
 body {
-    background-color: white;
+    background-color: rgb(243,244,246);
     padding-top: 70px;
     color: black;
     font-family: Helvetica;
@@ -28,6 +28,7 @@ body {
     list-style: none;
     scroll-behavior: smooth;
 }
+
 header {
   background-color: #1f2937;
   color: #FFFFFF;
@@ -94,13 +95,10 @@ header {
 .imagelogo {
   width: 60px;
   height: 70%;
-  padding: 5px;
-}
-
-@media screen and (max-width: 768px) {
-  .imagelogo {
-    display: none;
-  }
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .label {
@@ -155,6 +153,15 @@ header {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 300;
   border-top: solid 1px rgb(105, 105, 105);
+}
+
+@media (max-width: 480px) {
+  .welcome {
+    padding: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 /*soon*/
@@ -250,7 +257,10 @@ header {
   
   .tarjet-event {
     width: 25%;
-    height: auto;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    overflow: hidden;
     opacity: 1;
     min-width: 200px;
     background-color: rgb(255, 255, 255);
@@ -271,6 +281,10 @@ header {
   }*/
   
   .tarjet-event-name {
+    height: 10%;
+    min-height: 10%;
+    max-height: 10%;
+    overflow: hidden;
     font-size: 18px;
     font-family: 'Arial Narrow Bold', sans-serif;
     font-weight: 300;
@@ -280,10 +294,14 @@ header {
 }
 
 .tarjet-event-info {
-    font-size: 15px;
-    font-family: 'Arial Narrow Bold', sans-serif;
-    padding-right: 20px;
-    padding-left: 20px;
+  height: 10%;
+  min-height: 10%;
+  max-height: 10%;
+  overflow: hidden;
+  font-size: 15px;
+  font-family: 'Arial Narrow Bold', sans-serif;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .tarjet-event-descrip {
@@ -301,14 +319,17 @@ header {
 .tarjet-event-descrip,
 .tarjet-event-buttons {
     flex: 1;
+  overflow: hidden;
 }
 
 .tarjet-event-image {
-    height: 45%;
+    min-height: 60%;
+    height: 60%;
+    max-height: 60%;
     width: 100%;
     object-fit: cover;
     margin-bottom: 10px;
-    max-width: 100%;
+    overflow: hidden;
 }
 
 .tarjet-event-buttons {
@@ -472,7 +493,6 @@ header {
     justify-content: space-around;
     align-items: center;
     background-color: rgba(31,41,55,255);
-    padding: 25px 0px;
 }
   
 .footer-mails,.footer-info{

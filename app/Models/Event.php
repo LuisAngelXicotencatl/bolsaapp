@@ -24,4 +24,9 @@ class Event extends Model
     {
         return $this->belongsToMany(Date::class);
     }
+
+    public function empresa()
+    {
+        return $this->belongsToMany(Empresa::class);
+    }
 }

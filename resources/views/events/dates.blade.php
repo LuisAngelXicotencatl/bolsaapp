@@ -18,29 +18,39 @@
         </div>
     <a href="{{route('date.new', $event->id)}}"><button class="tarjet-event-button-delete" type="submit">Nuevo horario</button></a>
     <div class="eventos-title">Fechas disponibles</div>
-        <section class="soon">
-            @foreach($eventDates as $eventDate)
-                <div class="soon-event">
-                    <div class="soon-event-date">
-                        <div class="soon-event-info-label">{{ $eventDate->date->fecha }}</div>
-                        <div class="soon-event-info-label">{{ $eventDate->date->hora }}</div>
-                    </div>
-                    <div class="soon-event-info">
-                        <div class="soon-event-info-label"></div>
-                        <div class="tarjet-event-buttons">
-                            <form action="{{route('event.destroyDate', $eventDate->date->id)}}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button class="tarjet-event-button-deletenew" type="submit">Eliminar</button>
-                            </form>
-                            <a><button class="tarjet-event-button">Modificar</button></a>
-                        </div>
+    @if($eventDates->count() > 0)
+    <section class="soon">
+        @foreach($eventDates as $eventDate)
+            <div class="soon-event">
+                <div class="soon-event-date">
+                    <div class="soon-event-info-label">{{ $eventDate->date->fecha }}</div>
+                    <div class="soon-event-info-label">{{ $eventDate->date->hora }}</div>
+                </div>
+                <div class="soon-event-info">
+                    <div class="soon-event-info-label"></div>
+                    <div class="tarjet-event-buttons">
+                        <form action="{{route('event.destroyDate', $eventDate->date->id)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button class="tarjet-event-button-deletenew" type="submit">Eliminar</button>
+                        </form>
+                        <a><button class="tarjet-event-button">Modificar</button></a>
                     </div>
                 </div>
-            @endforeach
-        </section>
+            </div>
+        @endforeach
+    </section>
+    @else
+    <div class="event-i-details">
+        <div class="soon-event-date">
+            <div class="event-i-sub">No existen horarios disponibles...</div>
+        </div>
+        <!--<div class="event-i-sub">No existen horarios disponibles...</div>-->
+    </div>
+    @endif
     </div>
     <div class="eventos-title">Fechas tomadas</div>
+    @if($eventDatestake->count() > 0)
         <section class="soon">
             @foreach($eventDatestake as $eventDatestake)
                 <div class="soon-event">
@@ -61,6 +71,11 @@
                 </div>
             @endforeach
         </section>
+    @else
+    <div class="event-i-details">
+        <div class="event-i-sub">Nadie ha tomado alguna cita..</div>
+    </div>
+    @endif
     </div>
 </main>
 @endsection

@@ -60,7 +60,7 @@
                         </li>
                     </div>
                 </div>
-                <button class="tarjet-event-button-deleteupdate" type="submit">Actualizar formulario</button>
+                <button class="tarjet-event-button-deleteupdate" type="submit">Actualizar informacion</button>
             </form>
         </div>
     </main>

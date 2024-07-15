@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateEvent;
 use App\Models\Date;
 use App\Models\Event;
 use App\Models\EventDate;
+use App\Models\EventEmpresa;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -25,8 +26,15 @@ class EventController extends Controller
     public function show($id){
         /*return "Bienvenido $curso";*/
         $event = Event::find($id);
-        /*return $event;*/
-        return view('events.show', compact('event'));
+
+        $eventEmpresas = EventEmpresa::with(['event', 'empresa'])
+            ->where('event_id', $id)
+            ->get();
+
+        $images =  Event::with('images')->where('id',$id )->orderBy('id', 'desc')->get();
+        /*return $images;*/
+        /*return $images;*/
+        return view('events.show', compact('event', 'eventEmpresas', 'images'));
     }
     public function update($id){
         $event = Event::find($id);
@@ -100,23 +108,7 @@ class EventController extends Controller
         return view('events.newdate', compact('event'));
     }
 
-    /*public function newDateProcess(addDate $request,Date $id){
-        $newevent = new Date();
-        $newevent->fecha = $request->fecha;
-        $newevent->hora = $request->hora;
-        $newevent->status = 0;
-        $newevent->save();
 
-        $dateId = $newevent->id;
-        $eventId = $id;
-
-        $eventDate = new EventDate();
-        $eventDate->date_id = $dateId;
-        $eventDate->event_id = $eventId;
-        $eventDate->save();
-        return redirect()->route('Event.dates', $eventId);
-        return $id;
-    }*/
     public function newDateProcess(addDate $request, $id)
     {
         // Crear una nueva instancia de Date
@@ -146,6 +138,29 @@ class EventController extends Controller
         $newid = $id;
         return redirect()->route('Event.update', $newid->id);
         /*return $id;*/
+    }
+
+    public function nuevoEvento(){
+        return view('events.newEvent');
+    }
+
+
+
+    public function nuevoEventoProcess(UpdateEvent $request)
+    {
+        // Crear una nueva instancia de Date
+        $newevent = new Event();
+        $newevent ->titulo = $request->titulo;
+        $newevent ->subtitulo = $request->subtitulo;
+        $newevent ->descripcion = $request->descripcion;
+        $newevent ->fecha = $request->fecha;
+        $newevent ->lugar = $request->lugar;
+        $newevent ->status = 0;
+        $newevent->save();
+        // Obtener los IDs
+        $dateId = $newevent->id;
+        
+        return redirect()->route('Event.dates', $dateId);
     }
 }
 

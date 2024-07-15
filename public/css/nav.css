@@ -34,88 +34,47 @@ html {
     align-items: center;
     height: 55px;
     width: 100%;
-    border: 10%;
     /*background-color: rgba(49, 49, 49, 0.726);*/
     background-color: rgb(31, 41, 55);
   }
-  
-  .menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-  }
-  
-  .menu-toggle {
-    display: none;
-  }
-  
-  #vinculacion{
-    display: none;
-  }
-  @media screen and (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-      color: black;
+
+
+  @media (max-width: 480px) {
+    .nav {
+    height: 100px;
+    width: 100%;
+    flex-direction: column;
+    padding: 0;
+    border: 0;
+    margin: 0;
     }
-  
-    #vinculacion{
-      display: block;
-      color: black;
-    } 
-  
-    .menu {
+
+    .button-admin {
+      background-color: #246fbe;
+      color: #fff;
+      padding: 7px 10px;
+      margin: 0 5px;
+      font-size: 15px;
+    }
+    .nav-center{
+      padding: 5px;
+    }
+    .perfil-admin{
       display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background-color: #333333a6;
-      padding: 20px;
     }
-  
-    .menu a {
-      margin: 10px 0;
-      color: black;
+
+    .user-name{
+      display: none;
     }
-  
-    .menu.open {
-      display: flex;
+    header{
+      background-color: #1f2937;
+      color: #FFFFFF;
     }
   }
   
   
   a:hover {
     color: black;
-  }
-  
-  @media screen and (max-width: 800px) {
-    .menu {
-        display: none;
-    }
-  
-    .label {
-        font-size: 20px; /* Reducido el tamaño de la fuente para dispositivos móviles */
-    }
-  
-    .imagelogo {
-        width: 40px; /* Reducido el tamaño del logotipo para dispositivos móviles */
-        height: 60px; /* Reducido el tamaño del logotipo para dispositivos móviles */
-    }
-  
-    .head {
-        height: 50vh; /* Reducido el tamaño del encabezado para dispositivos móviles */
-    }
-  
-    .encabezado {
-        font-size: 20px; /* Reducido el tamaño del texto del encabezado para dispositivos móviles */
-    }
-  
-    .arrow {
-        height: 40px; /* Reducido el tamaño de la flecha para dispositivos móviles */
-        width: 40px; /* Reducido el tamaño de la flecha para dispositivos móviles */
-    }
   }
   
   .label {

@@ -31,12 +31,15 @@
             <div class="tarjet-event" id="2">
                 <div class="tarjet-event-name">{{$event->titulo}}</div>
                 <div class="tarjet-event-info">{{$event->subtitulo}} </div>
-                @foreach ($event->images as $image)
-                <img class="tarjet-event-image" src="{{ $image->image}}">
-                @endforeach
+                @if ($event->images->count() > 0)
+                    @php
+                        $imagePath = 'storage/' . str_replace('\\', '/', $event->images->first()->image);
+                    @endphp
+                    <img class="tarjet-event-image" src="{{ asset($imagePath) }}">
+                @endif
                 <div class="tarjet-event-buttons">
                     <a class="tarjet-event-link">{{$event->fecha}}-></a>
-                    <a href="{{route('Event.show', $event->id)}}"><button class="tarjet-event-button">Leer mas</button></a>
+                    <a href="{{route('Event.indexshow', $event->id)}}"><button class="tarjet-event-button">Leer mas</button></a>
                 </div>
             </div>
             @endforeach
@@ -45,10 +48,10 @@
             <button class="tarjet-event-button" id="verMasBtn">Ver más</button>
             <button class="tarjet-event-button" id="verMenosBtn">Ver menos</button>
         </div>
-        <script src="js/bucle.js"></script>
+        <script src="{{ asset('js/bucle.js ') }}"></script>
         <section class="coordinator-container" id="cordinador">
             <div class="coordinator-image">
-                <img src="images/ejm2.jpg" id="img4"alt="Foto del coordinador">
+                <img src="{{ asset('images/ejm2.jpg') }}" id="img4"alt="Foto del coordinador">
             </div>
             <div class="coordinator-info">
                 <h2 class="coordinator-title">Nombre del Coordinador</h2>
