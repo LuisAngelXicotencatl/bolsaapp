@@ -9,6 +9,7 @@ use App\Models\Event;
 use App\Models\EventDate;
 use App\Models\EventEmpresa;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class EventController extends Controller
 {
@@ -161,6 +162,28 @@ class EventController extends Controller
         $dateId = $newevent->id;
         
         return redirect()->route('Event.dates', $dateId);
+    }
+
+
+    public function updateDate($id){
+        $date = Date::where('id', $id)
+        ->first();
+        /*return $Dates;*/
+
+        return view('events.updatedate', compact('date'));
+    }
+
+    public function updateDateprocess(Request $request, Date $id){
+        $id->fecha = $request->fecha;
+        $id->hora = $request->hora;
+        $id->save();
+        /*return $id->id;*/
+
+        $event = EventDate::where('date_id', $id->id)->first();
+
+        $idEvent = $event->event_id;
+        /*return $idEvent;*/
+        return redirect()->route('Event.dates', $idEvent);
     }
 }
 

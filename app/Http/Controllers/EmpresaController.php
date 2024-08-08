@@ -9,6 +9,9 @@ use App\Models\EventImage;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+
 
 class EmpresaController extends Controller
 {
@@ -21,15 +24,34 @@ class EmpresaController extends Controller
         return view('empresas.new');
     }
 
-    public function agregarEmpresaProcess(Request $request)
+    /*public function agregarEmpresaProcess(Request $request)
     {
         $egregar = new Empresa();
         $egregar ->Nombre = $request->nombre;
         $egregar ->Descripcion = $request->descripcion;
+        $egregar->Email = strtolower(str_replace(' ', '.', $request->nombre)) . '@fcc_vinculacion.com';
+        $egregar->Contrasena = Str::random(10);
         $egregar ->save();
         $empresas =  Empresa::orderBy('id', 'desc')->get();
         return view('empresas.index', compact('empresas'));
-        return $egregar;
+    }*/
+
+
+    public function agregarEmpresaProcess(Request $request)
+    {
+    $egregar = new Empresa();
+    $egregar->Nombre = $request->nombre;
+    $egregar->Descripcion = $request->descripcion;
+    $egregar->Email = strtolower(str_replace(' ', '.', $request->nombre)) . '@fcc_vinculacion.com';
+
+    $plainPassword = Str::random(10);
+    $egregar->Contrasena = $plainPassword;
+
+    $egregar->save();
+
+    $empresas = Empresa::orderBy('id', 'desc')->get();
+
+    return view('empresas.index', compact('empresas'));
     }
 
 
@@ -102,5 +124,15 @@ class EmpresaController extends Controller
         /*return $images;*/
         /*return $images;*/
         return view('home.event', compact('event', 'eventEmpresas', 'images'));
+    }
+
+    public function EmpresaInfon($id){
+        $empresa = Empresa::find($id);
+        return view('empresas.show', compact('empresa'));
+    }
+
+    public function destroyempresa(Empresa $id){
+        $id->delete();
+        return redirect()->route('Empresa.index');
     }
 }

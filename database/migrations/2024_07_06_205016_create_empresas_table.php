@@ -17,6 +17,8 @@ class CreateEmpresasTable extends Migration
             $table->id();
             $table->string('Nombre');
             $table->string('Descripcion');
+            $table->string('email')->nullable();
+            $table->string('Contrasena')->nullable();
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 @extends('layouts.plantilla')
 @section('title', 'Cursos')
 @section("content")
+<body>
 <main>
     <div class="welcome">Bienvenido de regreso, {{ Auth::user()->name}}.</div>
     <div class="eventos-title">Proximos eventos</div>
@@ -62,4 +63,5 @@
     </div>
     <script src="{{ asset('js/bucle.js ') }}"></script>
 </main>
+</body>
 @endsection

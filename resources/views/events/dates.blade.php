@@ -34,7 +34,7 @@
                             @method('delete')
                             <button class="tarjet-event-button-deletenew" type="submit">Eliminar</button>
                         </form>
-                        <a><button class="tarjet-event-button">Modificar</button></a>
+                        <a href="{{route('event.updateDate', $eventDate->date->id)}}"><button class="tarjet-event-button">Modificar</button></a>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,6 @@
         <div class="soon-event-date">
             <div class="event-i-sub">No existen horarios disponibles...</div>
         </div>
-        <!--<div class="event-i-sub">No existen horarios disponibles...</div>-->
     </div>
     @endif
     </div>

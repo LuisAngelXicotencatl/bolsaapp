@@ -21,4 +21,8 @@ class Date extends Model
     public function eventDates() {
         return $this->hasMany(EventDate::class);
     }
+
+    public function eventEmpresa() {
+        return $this->hasMany(EventEmpresa::class);
+    }
 }

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class loginController extends Controller
 {
@@ -40,6 +41,43 @@ class loginController extends Controller
             "password" => $request->password,
         ];
         $remember = $request->has('remember');
+    
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+    
+            // Si la sesión corresponde a una empresa, puedes cargar la empresa asociada
+            if (Auth::user()->empresa) {
+                $empresa = Auth::user()->empresa;
+                $request->session()->put('empresa_name', $empresa->Nombre);
+            }
+    
+            return redirect()->intended(route('Event.index'));
+        } else {
+            $empresa = DB::table('empresas')
+                ->where('email', $request->email)
+                ->first();
+    
+            if ($empresa && $request->password == $empresa->Contrasena) {
+                Auth::loginUsingId($empresa->id, $remember);
+                $request->session()->regenerate();
+                $request->session()->put('empresa_name', $empresa->Nombre);
+                $request->session()->put('empresa_id', $empresa->id);
+                $request->session()->put('empresa_email', $empresa->email);
+                return redirect()->intended(route('cliente.index'));
+            } else {
+                return redirect()->route('inicio.formlogin');
+            }
+        }
+    }
+
+
+    /*
+    public function login(Request $request){
+        /*$credentials = [
+            "email" => $request->email,
+            "password" => $request->password,
+        ];
+        $remember = $request->has('remember');
 
         if(Auth::attempt($credentials, $remember)){
             $request->session()->regenerate();
@@ -47,5 +85,5 @@ class loginController extends Controller
         }else{
             return redirect()->route('inicio.formlogin');
         }
-    }
+    }*/
 }

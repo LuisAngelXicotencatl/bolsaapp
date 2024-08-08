@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('subtitulo');
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->date('fecha');
             $table->string('lugar');
             $table->string('premio')->nullable();

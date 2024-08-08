@@ -1,37 +1,48 @@
-.event-i{
+.event-i {
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     flex-direction: column;
     padding: 3%;
 }
 
-.event-i-title{
+.event-i-title {
     font-size: 24px;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px; 
 }
-.event-i-sub{
+
+.event-i-sub {
     font-size: 20px;
     font-weight: bold;
     color: #666;
     margin-bottom: 8px; 
 }
-.event-i-descripcion{
+.event-i-sub-c{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 8px; 
+}
+
+.event-i-descripcion {
     font-size: 16px;
     line-height: 1.5;
     color: #999;
     margin-bottom: 20px;
 }
 
-.event-i-details{
+.event-i-details {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
 }
-.event-i-academias,.event-i-info {
+
+.event-i-academias,
+.event-i-info {
     min-height: 50px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
@@ -47,6 +58,9 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .event-i-image {
@@ -69,7 +83,6 @@
     margin-bottom: 20px;
 }
 
-/* Estilo para las etiquetas ul */
 .input-container ul {
     list-style: none;
     padding: 0;
@@ -77,6 +90,7 @@
     font-family: Arial, sans-serif;
     font-size: 14px;
 }
+
 .input-container input[name="fecha"] {
     width: 100%;
     padding: 10px;
@@ -88,24 +102,23 @@
     font-family: Arial, sans-serif;
 }
 
-/* Estilo para el input en estado de enfoque */
 .input-container input[name="fecha"]:focus {
     border-color: #66afe9;
     outline: none;
     box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
 }
+
 .image-v {
     z-index: 2;
 }
-.event-i-images {
-    position: relative;
-}
 
 .images-i-z {
-    width: 22%; /* Tamaño deseado */
+    width: 22%;
     margin: 10px;
     position: relative;
 }
+
+
 .delete-icon {
     background: none;
     border: none;
@@ -114,19 +127,17 @@
     outline: none;
 }
 
-
-/* Estilo para el contenedor del input de archivo */
-
-.inputadd{
+.inputadd {
     padding: 15px;
 }
 
-.inputaddform{
+.inputaddform {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+
 .addfile-label {
     width: 300px;
     padding: 5px;
@@ -135,27 +146,61 @@
     justify-content: center;
     background-color: #007bff;
     color: #fff;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0 0;
     cursor: pointer;
 }
 
-.addfile{
+.addfile {
     width: 300px;
     height: auto;
     background-color: #007bff;
-    border-radius: 0px 0px 5px 5px;
+    border-radius: 0 0 5px 5px;
     padding: 5px;
 }
 
-.btnadd{
+.btnadd {
     margin-top: 10px;
 }
 
-span{
+span {
     color: red;
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 200;
 }
 
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .event-i-title {
+        font-size: 20px;
+    }
+
+    .event-i-sub {
+        font-size: 18px;
+    }
+
+    .event-i-descripcion {
+        font-size: 14px;
+    }
+
+    .event-i-details {
+        flex-direction: column;
+    }
+
+    .event-i-academias,
+    .event-i-info {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .event-i-image {
+        max-width: 45%;
+        height: auto;
+        margin: 10px 0;
+    }
+
+    .addfile-label, .addfile {
+        width: 90%;
+    }
+}
 

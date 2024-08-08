@@ -1,20 +1,19 @@
-.image-v{
-    /*animation: shake 0.5s ease-in-out infinite alternate;*/
-    animation: jiggle 0.5s ease-in-out infinite alternate;
+.image-v {
+  animation: jiggle 0.5s ease-in-out infinite alternate;
 }
 
 @keyframes jiggle {
   from {
-    transform: rotateZ(-5deg);
+      transform: rotateZ(-5deg);
   }
   to {
-    transform: rotateZ(5deg);
+      transform: rotateZ(5deg);
   }
 }
+
 .update-content {
   padding: 15px;
 }
-
 
 .update-title {
   font-size: 24px;
@@ -51,7 +50,7 @@
 }
 
 .update-event-title,
-.update-event-bubtitle,
+.update-event-subtitle,
 .update-event-content textarea,
 .update-event-content input {
   width: 80%;
@@ -90,8 +89,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
-.x{
+.x {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +97,7 @@
   left: 42%;
   top: -10%;
   z-index: 3;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   width: 30px;
   height: 30px;
   padding: 5px;
@@ -109,50 +107,95 @@
   color: #333;
 }
 
-.delete{
-  /*animation: shake 0.5s ease-in-out infinite alternate;*/
-  animation: jiggle-delte 0.1s ease-in-out infinite alternate;
+.delete {
+  animation: jiggle-delete 0.1s ease-in-out infinite alternate;
 }
 
-@keyframes jiggle-delte {
-from {
-  transform: rotateZ(-5deg);
-}
-to {
-  transform: rotateZ(5deg);
-}
+@keyframes jiggle-delete {
+  from {
+      transform: rotateZ(-5deg);
+  }
+  to {
+      transform: rotateZ(5deg);
+  }
 }
 
-.event-i-image-s{
+.event-i-image-s {
   border-radius: 8px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   width: 100%;
 }
-.button-image{
+
+.button-image {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.upload-image{
+
+.upload-image {
   width: auto;
   height: auto;
   padding: 10px;
   border-radius: 50px;
   border: none;
-  background-color: rgb(9, 82, 9);
+  background-color: #095209;
   color: white;
   margin: 15px;
 }
 
-.upload-update{
+.upload-update {
   width: auto;
   height: auto;
   padding: 10px;
   border-radius: 50px;
   border: none;
-  background-color: rgb(97, 3, 3);
+  background-color: #610303;
   color: white;
   margin: 15px;
 }
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .update-title {
+      font-size: 20px;
+  }
+
+  .update-event-label,
+  .update-event-title,
+  .update-event-subtitle,
+  .update-event-content textarea,
+  .update-event-content input {
+      width: 100%;
+      font-size: 14px;
+  }
+
+  .upload-update, .upload-image {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      margin: 10px 0;
+  }
+
+  .event-i-details {
+      flex-direction: column;
+  }
+
+  .event-i-academias,
+  .event-i-info {
+      width: 100%;
+      padding: 15px;
+  }
+
+  .event-i-image {
+      max-width: 45%;
+      height: auto;
+      margin: 10px 0;
+  }
+
+  .addfile-label, .addfile {
+      width: 90%;
+  }
+}
+
 

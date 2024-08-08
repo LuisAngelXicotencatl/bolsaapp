@@ -17,6 +17,7 @@ class CreateEventEmpresaTable extends Migration
             $table->id();
             $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
             $table->foreignId('event_id')->constrained()->onDelete('cascade');
+            $table->foreignId('date_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

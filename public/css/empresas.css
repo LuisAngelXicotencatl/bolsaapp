@@ -1,11 +1,5 @@
-/* resources/css/custom.css */
 
-.eventos-title {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
+/* Empresas section */
 .empresas-list {
     display: flex;
     flex-wrap: wrap;
@@ -17,7 +11,7 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 300px;
     transition: transform 0.2s;
@@ -69,3 +63,5 @@
 .empresa-card-button:hover {
     background-color: #0056b3;
 }
+
+

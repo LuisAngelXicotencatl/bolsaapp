@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\If_;
 use App\Http\Controllers\HomeController;
@@ -7,6 +6,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\ClienteController;
 use App\Models\Empresa;
 use App\Models\Event;
 use Illuminate\Support\Facades\Artisan;
@@ -64,6 +64,10 @@ Route::get("inicio/Administrador/event/date/{id}", [EventController::class, "dat
 Route::delete("inicio/Administrador/event/date/destroy/Process/{id}", [EventController::class, 'destroyDate'])->name('event.destroyDate')->middleware('auth');
 /*nuevo horario para evento formulario*/
 Route::get("inicio/Administrador/event/date/new/{id}", [EventController::class, "datesNew"]) -> name('date.new')->middleware('auth');
+/*actualizar horario*/
+Route::get("inicio/Administrador/event/updatedate/date/{id}", [EventController::class, "updateDate"]) -> name('event.updateDate')->middleware('auth');
+/*actualizar horarioproceso*/
+Route::put("inicio/Administrador/event/updatedateprocess/date/{id}", [EventController::class, "updateDateprocess"]) -> name('Event.updateDateprocess')->middleware('auth');
 /*Agregar fecha*/
 Route::put("inicio/Administrador/event/newDate/Process/{id}", [EventController::class, 'newDateProcess'])->name('Event.newdateProcess')->middleware('auth');
 /*Marcar evento como terminado*/
@@ -84,6 +88,10 @@ Route::put("inicio/Administrador/agregar/Process", [EmpresaController::class, 'a
 Route::delete('Empresas/Administrador/show/destroy/Process/{id}/{image}', [EmpresaController::class, 'destroyImage'])->name('Event.destroyImage')->middleware('auth');
 /*Agregar imagen */
 Route::post('inicio/Administrador/imagenagregar/Process', [EmpresaController::class, 'store'])->name('images.store')->middleware('auth');
+/*Retornar informacion de nueva empresa*/
+Route::get("Empresas/Administrador/newEmpresa/agregar/show/{id}", [EmpresaController::class, "EmpresaInfon"]) -> name('EmpresaInfon')->middleware('auth');
+/***/
+Route::delete('Empresas/Administrador/Empresa/delete/show/{id}', [EmpresaController::class, 'destroyempresa'])->name('destroyempresa')->middleware('auth');
 /*
 |--------------------------------------------------------------------------
 | Home
@@ -92,7 +100,7 @@ Route::post('inicio/Administrador/imagenagregar/Process', [EmpresaController::cl
 Route::get("inicio/Administrador/default/event/{id}", [EmpresaController::class, "show"]) -> name('Event.indexshow');
 /*
 |--------------------------------------------------------------------------
-| gegistro
+| registro
 |--------------------------------------------------------------------------
 */
 Route::get("inicio/Administrador/register", [loginController::class, "formRegister"])->name('inicio.registerForm');
@@ -101,6 +109,18 @@ Route::get("inicio/Administrador/login", [loginController::class, "formlogin"])-
 Route::post('inicio/Administrador/login/process', [loginController::class, 'login'])->name('inicio.login');
 Route::get("inicio/Administrador/exit", [loginController::class, "logout"])->name('inicio.logout');
 
+
+/*
+|--------------------------------------------------------------------------
+| Clientes
+|--------------------------------------------------------------------------
+*/
+Route::get("inicio/cliente/index", [ClienteController::class, "index"])->name('cliente.index');
+Route::get("inicio/cliente/event/{id}", [ClienteController::class, "show"])->name('cliente.show');
+Route::get("inicio/cliente/event/info/{id}", [ClienteController::class, "eventshow"]) -> name('cliente.eventshow');
+Route::post('inicio/cliente/event/Agendarcita/{id}', [ClienteController::class, 'agendarcita'])->name('agendarcita');
+Route::get('inicio/cliente/event/vercita/{id}', [ClienteController::class, 'verCita'])->name('vercita');
+Route::delete('inicio/cliente/event/vercita/delete/{id}', [ClienteController::class, 'destroymicita'])->name('destroymicita');
 
 
 

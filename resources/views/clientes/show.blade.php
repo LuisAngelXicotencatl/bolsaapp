@@ -1,4 +1,4 @@
-@extends('layouts.inicio')
+@extends('layouts.cliente')
 @section('title', $event->titulo)
 @section("content")
 <main>
@@ -16,9 +16,9 @@
                 </div>
                 <div class="event-i-academias">
                     <li>Empresas y Academias
-                        <ul>No disponibles</ul>
+                        <ul>No disponible</ul>
                         <!--@foreach ($eventEmpresas as $eventEmpresa)
-                            <ul> {{$eventEmpresa->empresa->Nombre}}</ul>
+                            <ul>  {{$eventEmpresa->empresa->Nombre}}</ul>
                         @endforeach-->
                     </li>
                 </div>
@@ -26,10 +26,12 @@
         </div>
         <div class="event-i-images">
             @foreach ($event->images as $image)
+            <div class="images-i-z">
                     @php
                         $imagePath = 'storage/' . str_replace('\\', '/', $image->image);
                     @endphp
-                    <img class="event-i-image" src="{{ asset($imagePath) }}">
+                    <img class="tarjet-event-image" src="{{ asset($imagePath) }}">
+            </div>
             @endforeach
         </div>
     </div>

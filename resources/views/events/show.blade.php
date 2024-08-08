@@ -9,16 +9,17 @@
         <div class="event-i-details">
             <div class="event-i-info">
                 <li>
-                    <ul>Fecha: {{ $event->fecha }}</ul>
+                    <ul>Fechxdxx: {{ $event->fecha }}</ul>
                     <ul>Lugar: {{ $event->lugar }}</ul>
                     <ul>Premio: {{ $event->premio }}</ul>
                     </li>
                 </div>
                 <div class="event-i-academias">
                     <li>Empresas y Academias
-                        @foreach ($eventEmpresas as $eventEmpresa)
-                            <ul> --> {{$eventEmpresa->empresa->Nombre}}</ul>
-                        @endforeach
+                        <ul>No disponibles</ul>
+                        <!--@foreach ($eventEmpresas as $eventEmpresa)
+                            <ul> {{$eventEmpresa->empresa->Nombre}}</ul>
+                        @endforeach-->
                     </li>
                 </div>
             </div>
@@ -38,7 +39,7 @@
                     @php
                         $imagePath = 'storage/' . str_replace('\\', '/', $image->image);
                     @endphp
-                    <img class="event-i-image-s image-v" src="{{ asset($imagePath) }}">
+                    <img class="tarjet-event-image image-v" src="{{ asset($imagePath) }}">
             </div>
             @endforeach
         </div>

@@ -19,10 +19,8 @@
             <section class="menu">
                 <a href="#nosotros" class="label">Nosotros</a>
                 <a href="#eventos" class="label">Eventos</a>
-                <a href="#cordinador" class="label">Noticias</a>
                 <a href="#cordinador" class="label">Cordinadora</a>
             </section>
-            <a href="#empresas" id="vinculacion" class="label">Vinculacion</a>
             <img class="imagelogo" id="imagelogo"src="{{ asset('images/logovfcc.png') }}">
         </nav>
         <script src="../js/menu.js"></script>
@@ -43,9 +41,7 @@
             <div class="footer-info-title">Benemérita Universidad Autónoma de Puebla</div>
             <div class="footer-info-title">Vinculación Facultad de Computación</div>
         </div>
-        <div>
-            <a href="{{route('Event.index')}}" class="footer-button"><button>Iniciar sesión</button></a>
-        </div>
+        <a href="{{route('Event.index')}}"><button  class="footer-button">Iniciar sesión</button></a>
     </footer>
 </body>
 </html>

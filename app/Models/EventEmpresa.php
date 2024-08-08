@@ -17,4 +17,8 @@ class EventEmpresa extends Model
     public function Empresa() {
         return $this->belongsTo(Empresa::class);
     }
+
+    public function date() {
+        return $this->belongsTo(Date::class);
+    }
 }
