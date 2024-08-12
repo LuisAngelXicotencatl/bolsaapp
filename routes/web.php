@@ -106,8 +106,11 @@ Route::get("inicio/Administrador/default/event/{id}", [EmpresaController::class,
 Route::get("inicio/Administrador/register", [loginController::class, "formRegister"])->name('inicio.registerForm');
 Route::post('inicio/Administrador/register/process', [loginController::class, 'register'])->name('inicio.register');
 Route::get("inicio/Administrador/login", [loginController::class, "formlogin"])->name('inicio.formlogin');
+Route::get("inicio/cliente/login", [loginController::class, "formloginempresa"])->name('inicio.formloginempresa');
 Route::post('inicio/Administrador/login/process', [loginController::class, 'login'])->name('inicio.login');
+Route::post('inicio/Administrador/loginempresa/process', [loginController::class, 'loginEmpresa'])->name('inicio.loginEmpresa');
 Route::get("inicio/Administrador/exit", [loginController::class, "logout"])->name('inicio.logout');
+Route::get("inicio/cliente/exit", [loginController::class, "formloginempresa"])->name('inicio.logoutEmpresa');
 
 
 /*

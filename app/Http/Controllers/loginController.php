@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,10 +31,22 @@ class loginController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('inicio.formlogin');
     }
-    
+
+    public function logoutEm(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('inicio.formloginEmpresa');
+    }
     public function formlogin(){
         return view('home.login');
     }
+
+    public function formloginempresa(){
+        return view('home.loginempresa');
+    }
+
+    
 
     public function login(Request $request){
         $credentials = [
@@ -69,8 +82,34 @@ class loginController extends Controller
             }
         }
     }
+    public function loginEmpresa(Request $request)
+    {
+    $credentials = [
+        "email" => $request->email,
+        "contrasena" => $request->password,
+    ];
+    $remember = $request->has('remember');
 
+    // Intentar autenticar al usuario en la tabla `empresas`
+    $empresa = Empresa::where('email', $credentials['email'])->first();
 
+    // Verificar la contraseña sin hash
+    if ($empresa && $credentials['contrasena'] === $empresa->contrasena) {
+        Auth::login($empresa, $remember);
+
+        // Guardar el nombre de la empresa y el ID en la sesión
+        $request->session()->put('empresa_name', $empresa->nombre);
+        $request->session()->put('empresa_id', $empresa->id);
+        $request->session()->put('empresa_email', $empresa->email);
+
+        $request->session()->regenerate();
+        return redirect()->intended(route('cliente.index'));
+    } else {
+        return redirect()->route('inicio.formloginempresa')->withErrors([
+            'email' => 'Las credenciales no coinciden con nuestros registros.',
+        ]);
+    }
+    }
     /*
     public function login(Request $request){
         /*$credentials = [

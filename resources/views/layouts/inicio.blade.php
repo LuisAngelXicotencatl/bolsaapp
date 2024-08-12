@@ -29,19 +29,25 @@
         @yield('content')
     </main>
     <footer class="footer-content">
-        <div class="footer-mails">
-            <div class="footer-mails-mail-title">Contactos</div>
-            <div class="footer-mails-mail">dradminitacion@fcc.com</div>
-            <div class="footer-mails-mail">vinculacion@fcc.com</div>
-            <div class="footer-mails-mail">bolsatrabajofcc@gmail.com</div>
+        <div class="foot-links">
+            <div class="footer-mails">
+                <div class="footer-mails-mail-title">Contactos</div>
+                <div class="footer-mails-mail">dradminitacion@fcc.com</div>
+                <div class="footer-mails-mail">vinculacion@fcc.com</div>
+                <div class="footer-mails-mail">bolsatrabajofcc@gmail.com</div>
+            </div>
+            <div class="footer-info">
+                <div class="footer-info-title-tile">Bolsa de trabajo</div>
+                <div class="footer-info-title">Facultad de Computación</div>
+                <div class="footer-info-title">Benemérita Universidad Autónoma de Puebla</div>
+                <div class="footer-info-title">Vinculación Facultad de Computación</div>
+            </div>
+            <a href="{{route('inicio.formlogin')}}"><button  class="footer-button">Iniciar sesión</button></a>
         </div>
-        <div class="footer-info">
-            <div class="footer-info-title-tile">Bolsa de trabajo</div>
-            <div class="footer-info-title">Facultad de Computación</div>
-            <div class="footer-info-title">Benemérita Universidad Autónoma de Puebla</div>
-            <div class="footer-info-title">Vinculación Facultad de Computación</div>
+        <div class="foot-links">
+            <a href=""><button class="footer-botton">Comentarios y sugerencias</button></a>
+            <a href=""><button class="footer-botton">Solicitar registro</button></a>
         </div>
-        <a href="{{route('Event.index')}}"><button  class="footer-button">Iniciar sesión</button></a>
     </footer>
 </body>
 </html>
