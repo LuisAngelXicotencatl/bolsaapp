@@ -9,6 +9,8 @@ use App\Models\EventDate;
 use App\Models\EventEmpresa;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CitaTomadaMail;
 
 class ClienteController extends Controller
 {
@@ -112,6 +114,22 @@ class ClienteController extends Controller
 
         $newvalue = $request->idevent;
 
+
+        /*Correo*/
+
+        $event = Event::find($eventoEmpresa -> event_id);
+        $date = Date::find($eventoEmpresa -> date_id);
+
+        $idCorreo = $event ->id;
+        $titulo = $event ->titulo;
+        $fechaEvento = $event ->fecha;
+        $lugar = $event ->lugar;
+        $fechaCita = $date -> fecha;
+        $hora = $date -> hora;
+        $empresa = $date -> empresa;
+
+        $to = "deycek82@gmail.com";
+        Mail::to($to)->send(new CitaTomadaMail($idCorreo, $titulo,$fechaEvento,$lugar,$fechaCita,$hora,$empresa));
         return redirect()->route('cliente.show', $newvalue);
     }
 }

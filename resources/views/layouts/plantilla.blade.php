@@ -35,10 +35,10 @@
     </main>
     <footer class="footer-content">
         <div class="footer-mails">
-            <div class="footer-mails-mail-title">Contactos</div>
-            <div class="footer-mails-mail">dradminitacion@fcc.com</div>
-            <div class="footer-mails-mail">vinculacion@fcc.com</div>
-            <div class="footer-mails-mail">bolsatrabajofcc@gmail.com</div>
+            <div class="footer-mails-mail-title">Enlaces</div>
+            <a class="aenlaces" href="http://www.cs.buap.mx/"><div class="footer-mails-mail">http://www.cs.buap.mx</div></a>
+            <a class="aenlaces" href="https://vinculacion.cs.buap.mx/?page_id=1015"><div class="footer-mails-mail">https://vinculacion.cs.buap.mx</div></a>
+            <a class="aenlaces" href="https://www.buap.mx/"><div class="footer-mails-mail">https://www.buap.mx</div></a>
         </div>
         <div class="footer-info">
             <div class="footer-info-title-tile">Bolsa de trabajo</div>
@@ -46,7 +46,7 @@
             <div class="footer-info-title">Benemérita Universidad Autónoma de Puebla</div>
             <div class="footer-info-title">Vinculación Facultad de Computación</div>
             <div>
-                <div class="footer-info-title">Version 1.0</div>
+                <div class="footer-info-title">Version beta1.0</div>
             </div>
         </div>
         <a href="{{route('inicio.logout')}}"><button class="footer-button">Cerrar sesión</button></a>

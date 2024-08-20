@@ -76,6 +76,8 @@ Route::put("inicio/Administrador/event/finished/Process/{id}", [EventController:
 Route::get("inicio/Administrador/event/nuevo/evento", [EventController::class, "nuevoEvento"])->name('Event.nuevoEvento')->middleware('auth');
 /*Agregar nuevo evento*/
 Route::put("inicio/Administrador/event/nuevo/eventoProcess", [EventController::class, 'nuevoEventoProcess'])->name('Event.nuevoEventoProcess')->middleware('auth');
+Route::get('/evento/{id}/export', [EventController::class, 'export'])->name('event.export');
+
 /*
 |--------------------------------------------------------------------------
 | Empresas
@@ -98,6 +100,9 @@ Route::delete('Empresas/Administrador/Empresa/delete/show/{id}', [EmpresaControl
 |--------------------------------------------------------------------------
 */
 Route::get("inicio/Administrador/default/event/{id}", [EmpresaController::class, "show"]) -> name('Event.indexshow');
+Route::get("inicio/questions", [HomeController::class, "questions"]) -> name('index.questions');
+Route::Post("inicio/questions/process", [HomeController::class, "questionsP"]) -> name('index.questionsP');
+Route::get("inicio/sugerencia", [HomeController::class, "sugerenciaseed"]) -> name('index.sugerenciaseed');
 /*
 |--------------------------------------------------------------------------
 | registro

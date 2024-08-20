@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/event.css') }}">
@@ -28,25 +29,28 @@
     <main>
         @yield('content')
     </main>
-    <footer class="footer-content">
+    <footer class="footer-content-i">
         <div class="foot-links">
             <div class="footer-mails">
-                <div class="footer-mails-mail-title">Contactos</div>
-                <div class="footer-mails-mail">dradminitacion@fcc.com</div>
-                <div class="footer-mails-mail">vinculacion@fcc.com</div>
-                <div class="footer-mails-mail">bolsatrabajofcc@gmail.com</div>
+                <div class="footer-mails-mail-title">Enlaces</div>
+                <a class="aenlaces" href="http://www.cs.buap.mx/"><div class="footer-mails-mail">http://www.cs.buap.mx</div></a>
+                <a class="aenlaces" href="https://vinculacion.cs.buap.mx/?page_id=1015"><div class="footer-mails-mail">https://vinculacion.cs.buap.mx</div></a>
+                <a class="aenlaces" href="https://www.buap.mx/"><div class="footer-mails-mail">https://www.buap.mx</div></a>
             </div>
             <div class="footer-info">
                 <div class="footer-info-title-tile">Bolsa de trabajo</div>
                 <div class="footer-info-title">Facultad de Computación</div>
                 <div class="footer-info-title">Benemérita Universidad Autónoma de Puebla</div>
                 <div class="footer-info-title">Vinculación Facultad de Computación</div>
+                <div>
+                    <div class="footer-info-title">Version beta1.0</div>
+                </div>
             </div>
             <a href="{{route('inicio.formlogin')}}"><button  class="footer-button">Iniciar sesión</button></a>
         </div>
         <div class="foot-links">
-            <a href=""><button class="footer-botton">Comentarios y sugerencias</button></a>
-            <a href=""><button class="footer-botton">Solicitar registro</button></a>
+            <a href="{{route('index.questions')}}"><button class="footer-botton">Comentarios y sugerencias</button></a>
+            <a href="https://vinculacion.cs.buap.mx/?page_id=865"><button class="footer-botton">¿Como me registro?</button></a>
         </div>
     </footer>
 </body>

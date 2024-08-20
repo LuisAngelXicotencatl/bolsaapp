@@ -16,7 +16,11 @@
                 </li>
             </div>
         </div>
-    <a href="{{route('date.new', $event->id)}}"><button class="tarjet-event-button-delete" type="submit">Nuevo horario</button></a>
+        <div>
+            <a class="buttonexcel" href="{{route('date.new', $event->id)}}"><button class="tarjet-event-button-delete" type="submit">Nuevo horario</button></a>
+            <a class="buttonexcel" href="{{ route('event.export', $event->id) }}"><button class="tarjet-event-button">Descargar Excel</button></a>
+        </div>
+    </div>
     <div class="eventos-title">Fechas disponibles</div>
     @if($eventDates->count() > 0)
     <section class="soon">

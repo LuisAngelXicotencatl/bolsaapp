@@ -10,6 +10,8 @@ use App\Models\EventDate;
 use App\Models\EventEmpresa;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
+use App\Exports\EventDatesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventController extends Controller
 {
@@ -184,6 +186,12 @@ class EventController extends Controller
         $idEvent = $event->event_id;
         /*return $idEvent;*/
         return redirect()->route('Event.dates', $idEvent);
+    }
+
+    public function export($eventId)
+    {
+    $event = Event::findOrFail($eventId);
+    return Excel::download(new EventDatesExport($event), 'citas_evento_'.$event->titulo.'.xlsx');
     }
 }
 

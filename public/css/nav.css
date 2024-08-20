@@ -158,18 +158,42 @@ a:hover {
   flex-direction: column;
 }
 
+
+.nostros-content-i {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
 .nostros-content-title {
   font-size: 10vh;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.925);
-  padding-left: 5%;
+  padding-left: 3%;
 }
 
 .nostros-content-text {
   font-size: 3vh;
   text-align: justify;
   padding: 5%;
+  color: gray;
+}
+.sugerencias{
+  width: 90%;
+  height: auto;
+  font-size: 2.5vh;
+  text-align: justify;
+  padding: 2%;
+  color: gray;
+}
+
+.sugerencias-t{
+  width: 90%;
+  height: auto;
+  font-size: 3vh;
+  text-align: justify;
   color: gray;
 }
 
@@ -412,6 +436,7 @@ a:hover {
   font-size: 20px;
   font-family: Calibri, 'Trebuchet MS', sans-serif;
   color: gray;
+  text-align: justify;
 }
 .coordinator-contac{
   font-size: 20px;
@@ -425,11 +450,19 @@ a:hover {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: rgba(31,41,55,255);
+  padding: 25px 0px;
+}
+.footer-content-i{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   flex-direction: column;
   background-color: rgba(31,41,55,255);
   padding: 25px 0px;
 }
-
 .foot-links{
   padding-top: 10px;
   width: 100%;
@@ -467,9 +500,21 @@ a:hover {
   border: none;
 }
 
+.aenlaces{
+  text-decoration: none;
+  color: white;
+  font-weight: bold; /* Opcional: para hacer el texto en negrita */
+  padding: 5px;
+}
+
 .fcc{
+  padding: 20px;
   width: 40%;
-  height: 100vh;
+  height: 80%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.buttonexcel{
+  padding: 10px;
 }

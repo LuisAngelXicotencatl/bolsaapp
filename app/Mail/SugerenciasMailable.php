@@ -19,9 +19,10 @@ class SugerenciasMailable extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $Sugerencias;
+    public function __construct($Sugerencias)
     {
-        //
+        $this->Sugerencias = $Sugerencias;
     }
 
     /*public function envelope(): envelope
@@ -39,6 +40,13 @@ class SugerenciasMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        /*return $this->view('view.name');*/
+        return$this->view('emails.Sugerencias')
+                    ->subject('Nuevo comentario-sugerencia del sistema')
+                    ->with([
+                        'Sugerencias' => $this->Sugerencias,
+                    ]);
     }
+
+    
 }
