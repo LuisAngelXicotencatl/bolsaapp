@@ -274,7 +274,7 @@ a:hover {
   }
 }
 
-/* Events styles */
+/* Events styles 
 .eventos {
   width: 100%;
   background-color: rgb(243, 244, 246);
@@ -284,7 +284,8 @@ a:hover {
   align-items: center;
   padding: 20px;
   padding-bottom: 0px;
-}
+} 
+*/
 
 .eventos-title {
   width: 100%;
@@ -296,7 +297,7 @@ a:hover {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: 300;
 }
-
+/*
 .tarjet-event {
   width: 25%;
   min-width: 200px;
@@ -314,6 +315,7 @@ a:hover {
 .tarjet-event:hover {
   transform: rotate(1.5deg) scale(1.05);
 }
+*/
 
 .tarjet-event-name,
 .tarjet-event-info,
@@ -372,18 +374,19 @@ a:hover {
   .eventos-title {
       font-size: 1.5rem;
   }
-
+/*
   .tarjet-event {
       width: 100%;
       min-width: auto;
       box-shadow: none;
       border: none;
   }
+  
 
   .tarjet-event:hover {
       transform: none;
   }
-
+*/
   .tarjet-event-image {
       width: 100%;
       height: auto;
@@ -518,3 +521,12 @@ a:hover {
 .buttonexcel{
   padding: 10px;
 }
+
+
+    @keyframes fade-in {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .animate-fade-in {
+        animation: fade-in 1s ease-in-out;
+    }

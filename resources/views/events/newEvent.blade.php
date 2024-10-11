@@ -1,67 +1,71 @@
 @extends('layouts.plantilla')
 @section('title', 'Nuevo Evento')
 @section("content")
-    <main>
-        <div class="update-content">
-            <!--<div class="update-title">Eventos</div>-->
-            <div class="update-title">Agregar un nuevo evento</div>
-        </div>
-        <div class="update-content">
-            <form action="{{route('Event.nuevoEventoProcess')}}" method="post">
-                @csrf
-                @method('put')
-                <!--Titulo-->
-                <div class="update-event-content">
-                    <Label class="update-event-label">Titulo</Label>
-                    <input class="update-event-title"  name="titulo" value="{{old('titulo')}}">
-                </div>
+<main class="bg-gray-50 p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-300 mb-6">
+        <div class="text-xl font-semibold text-gray-800 mb-4">Agregar un nuevo evento</div>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
+        <form action="{{ route('Event.nuevoEventoProcess') }}" method="post" class="space-y-4">
+            @csrf
+            @method('put')
+
+            <!-- Título -->
+            <div>
+                <label class="block text-gray-700 font-semibold">Título</label>
+                <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    name="titulo" value="{{ old('titulo') }}">
                 @error('titulo')
-                <span>*{{$message}}</span>
+                    <span class="text-red-500 text-sm">*{{ $message }}</span>
                 @enderror
-                <!--subtitulo-->
-                <div class="update-event-content">
-                    <Label class="update-event-label">Subitulo</Label>
-                    <input class="update-event-bubtitle" name="subtitulo" value="{{old('subtitulo')}}">
-                </div>
+            </div>
+
+            <!-- Subtítulo -->
+            <div>
+                <label class="block text-gray-700 font-semibold">Subtítulo</label>
+                <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    name="subtitulo" value="{{ old('subtitulo') }}">
                 @error('subtitulo')
-                    <br>
-                    <span>*{{$message}}</span>
-                    <br>
+                    <span class="text-red-500 text-sm">*{{ $message }}</span>
                 @enderror
-                <!--descripcion-->
-                <div class="update-event-content">
-                    <label class="update-event-label">Descripcion</label>
-                    <textarea  name="descripcion" rows="5">{{old('avatar')}}</textarea>
-                </div>
+            </div>
+
+            <!-- Descripción -->
+            <div>
+                <label class="block text-gray-700 font-semibold">Descripción</label>
+                <textarea class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    name="descripcion" rows="5">{{ old('descripcion') }}</textarea>
                 @error('descripcion')
-                    <span>*{{$message}}</span>
+                    <span class="text-red-500 text-sm">*{{ $message }}</span>
                 @enderror
-                <!--detalles-->
-                <div class="event-i-details">
-                    <div class="update-event-info event-i-academias">
-                        <li>
-                            <!--<ul>Fecha: <input type="date"  name="fecha" value="{{old('avatar')}}"></ul>-->
-                            <div class="input-container">
-                                <ul>Fecha: 
-                                    <input name="fecha" value="{{ old('fecha') }}" type="date">
-                                </ul>
-                            </div>
-                            @error('fecha')
-                                <span>*{{$message}}</span>
-                            @enderror
-                            <div class="input-container">
-                                <ul>Lugar: 
-                                    <input   class="update-event-title" name="lugar" value="{{old('avatar')}}">
-                                </ul>
-                            </div>
-                            @error('lugar')
-                                <span>*{{$message}}</span>
-                            @enderror
-                        </li>
-                    </div>
+            </div>
+
+            <!-- Detalles -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold">Fecha</label>
+                    <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        name="fecha" value="{{ old('fecha') }}" type="date">
+                    @error('fecha')
+                        <span class="text-red-500 text-sm">*{{ $message }}</span>
+                    @enderror
                 </div>
-                <button class="tarjet-event-button-deleteupdate" type="submit">Agregar Evento</button>
-            </form>
-        </div>
-    </main>
+
+                <div>
+                    <label class="block text-gray-700 font-semibold">Lugar</label>
+                    <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        name="lugar" value="{{ old('lugar') }}">
+                    @error('lugar')
+                        <span class="text-red-500 text-sm">*{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors mt-4" type="submit">
+                Agregar Evento
+            </button>
+        </form>
+    </div>
+</main>
 @endsection

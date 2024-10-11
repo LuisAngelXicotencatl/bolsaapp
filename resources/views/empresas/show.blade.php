@@ -1,23 +1,21 @@
 @extends('layouts.plantilla')
-@section('title',)
+@section('title', $empresa->Nombre)
 @section("content")
-<main>
-    <div class="event-i">
-        <div class="event-i-title">{{ $empresa->Nombre }}</div>
-        <div class="event-i-sub">{{ $empresa->Descripcion}}</div>
-        <div class="event-i-details">
-            <div class="event-i-info">
-                <li>
-                    <ul>Correo: {{ $empresa->email }}</ul>
-                    <ul>Pass: {{ $empresa->Contrasena }}</ul>
-                </li>
-            </div>
-        </div>
-        <form action="{{route('destroyempresa', $empresa->id)}}" method="POST">
+<main class="bg-gray-50 p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-300 mb-6">
+        <div class="text-xl font-semibold text-gray-800">{{ $empresa->Nombre }}</div>
+        <div class="text-lg text-gray-600 mb-4">{{ $empresa->Descripcion }}</div>
+        <ul class="text-gray-600">
+            <li>Correo: {{ $empresa->email }}</li>
+            <li>Contraseña: {{ $empresa->Contrasena }}</li>
+        </ul>
+        <form action="{{ route('destroyempresa', $empresa->id) }}" method="POST" class="mt-4">
             @csrf
             @method('delete')
-            <button class="tarjet-event-button-delete" type="submit">Eliminar empresa</button>
+            <button class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors" type="submit">
+                Eliminar empresa
+            </button>
         </form>
-        <!--<a href="{{route('destroyempresa', $empresa->id)}}"><button class="tarjet-event-button-delete" type="submit">Eliminar empresa</button></a>-->
+    </div>
 </main>
 @endsection

@@ -1,67 +1,73 @@
 @extends('layouts.plantilla')
 @section('title', 'Cursos')
-@section("content")
-<body>
-<main>
-    <div class="welcome">Bienvenido de regreso, {{ Auth::user()->name}}.</div>
-    <div class="eventos-title">Proximos eventos</div>
-    <section class="soon">
-        @foreach ($soons as $soon)
-        <div class="soon-event">
-            <div class="soon-event-date">
-                <div class="soon-event-info-label">{{$soon->fecha}}</div>
-            </div>
-            <div class="soon-event-info">
-                <div class="soon-event-info-label">{{$soon->titulo}}</div>
-                <div class="tarjet-event-buttons">
-                    <a href="{{route('Event.dates', $soon->id)}}"><button class="tarjet-event-button-delete">Fechas</button></a>
-                    <a href="{{route('Event.soonUpdate', $soon->id)}}"><button class="tarjet-event-button" id="delete">Modificar</button></a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </section>
-    <div class="eventos-title">Eventos pasados</div>
-    <!--<section class="eventos">
-    @foreach ($events as $event)
-        <div class="tarjet-event" id="1">
-            <div class="tarjet-event-name">{{$event->titulo}}</div>
-            <div class="tarjet-event-info">{{$event->subtitulo}} </div>
-            @foreach ($event->images as $image)
-            <img class="tarjet-event-image" src="{{ $image->image }}">
-            @endforeach
-            <div class="tarjet-event-buttons">
-                <a href="{{route('Event.update', $event->id)}}"><button class="tarjet-event-button-delete" id="delete">Modificar</button></a>
-                <a href="{{route('Event.show', $event->id)}}"><button class="tarjet-event-button">Ver</button></a>
-            </div>
-            <script src="js/Quiz.js"></script>
-        </div>
-    @endforeach
-    </section>-->
-    <section class="eventos">
-        @foreach ($events as $event)
-            <div class="tarjet-event" id="1">
-                <div class="tarjet-event-name">{{$event->titulo}}</div>
-                <div class="tarjet-event-info">{{$event->subtitulo}} </div>
-                @if ($event->images->count() > 0)
-                    @php
-                        $imagePath = 'storage/' . str_replace('\\', '/', $event->images->first()->image);
-                    @endphp
-                    <img class="tarjet-event-image" src="{{ asset($imagePath) }}">
-                @endif
-                <div class="tarjet-event-buttons">
-                    <a href="{{route('Event.update', $event->id)}}"><button class="tarjet-event-button-delete" id="delete">Modificar</button></a>
-                    <a href="{{route('Event.show', $event->id)}}"><button class="tarjet-event-button">Ver</button></a>
-                </div>
-                <script src="{{ asset('js/Quiz.js') }}"></script>
-            </div>
-        @endforeach
-    </section>
-    <div class="tarjet-event-more">
-        <button class="tarjet-event-button" id="verMasBtn">Ver más</button>
-        <button class="tarjet-event-button" id="verMenosBtn">Ver menos</button>
+@section('content')
+<body class="bg-gray-100 text-gray-800">
+<main class="container mx-auto py-10">
+    <div class="text-2xl font-bold text-center mb-6 animate-fade-in">
+        Bienvenido, {{ Auth::user()->name }}.
     </div>
-    <script src="{{ asset('js/bucle.js ') }}"></script>
+
+    <div class="text-xl font-semibold mb-4">Próximos eventos</div>
+    
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach ($soons as $soon)
+        <div class="bg-white shadow-md rounded-lg p-6 transition transform hover:-translate-y-2 hover:shadow-xl animate-fade-in">
+            <div class="text-gray-600 mb-2">{{ $soon->fecha }}</div>
+            <div class="text-lg font-semibold mb-4">{{ $soon->titulo }}</div>
+            <div class="flex space-x-4">
+                <a href="{{ route('Event.dates', $soon->id) }}">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                        Fechas
+                    </button>
+                </a>
+                <a href="{{ route('Event.soonUpdate', $soon->id) }}">
+                    <button class="bg-yellow-900 hover:bg-yellow-700 text-white py-2 px-4 rounded">
+                        Modificar
+                    </button>
+                </a>
+            </div>
+        </div>
+        @endforeach
+    </section>
+
+    <div class="text-xl font-semibold mt-10 mb-4">Eventos pasados</div>
+    <section class="contenedor-mov grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 eventos" id="eventos">
+        @foreach ($events as $event)
+        <div class="contenedor-mov-i bg-white shadow-md rounded-lg p-6 transition transform hover:-translate-y-2 hover:shadow-xl animate-fade-in tarjet-event" id="2">
+            <div class="text-lg font-semibold mb-2">{{ $event->titulo }}</div>
+            <div class="text-gray-600 mb-4">{{ $event->subtitulo }}</div>
+            @if ($event->images->count() > 0)
+                @php
+                    $imagePath = 'storage/' . str_replace('\\', '/', $event->images->first()->image);
+                @endphp
+                <img class="w-full h-40 object-cover rounded-lg mb-4" src="{{ asset($imagePath) }}">
+            @endif
+            <div class="flex space-x-4 tarjet-event-buttons-mov">
+                <a href="{{ route('Event.update', $event->id) }}">
+                    <button class="bg-green-700 hover:bg-yellow-700 text-white py-2 px-4 rounded">
+                        Modificar
+                    </button>
+                </a>
+                <a href="{{ route('Event.show', $event->id) }}">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                        Ver
+                    </button>
+                </a>
+            </div>
+        </div>
+        @endforeach
+    </section>
+
+    <div class="text-center mt-10">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded tarjet-event-button" id="verMasBtn">
+            Ver más
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded tarjet-event-button" id="verMenosBtn">
+            Ver menos
+        </button>
+    </div>
+    
+    <script src="{{ asset('js/bucle.js') }}"></script>
 </main>
 </body>
 @endsection

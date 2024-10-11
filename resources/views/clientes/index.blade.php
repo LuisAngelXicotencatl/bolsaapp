@@ -3,46 +3,57 @@
 @section("content")
 <body>
     <main>
-        <div class="welcome">Bienvenido, {{ session('empresa_name')}}.
+        <div class="text-2xl font-bold text-center mb-6 animate-fade-i">Bienvenido, {{ session('empresa_name')}}.
         </div>
-        <div class="eventos-title">Proximos eventos</div>
+        <div class="text-xl font-semibold mt-10 mb-4">Proximos eventos</div>
         <section class="soon">
             @foreach ($soons as $soon)
-            <div class="soon-event">
-                <div class="soon-event-date">
-                    <div class="soon-event-info-label">{{$soon->fecha}}</div>
+            <div class="soon-event bg-white shadow-md rounded-lg p-4 mb-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
+                <!-- Event Date -->
+                <div class="soon-event-date bg-blue-100 text-blue-800 px-4 py-2 rounded-lg">
+                    <div class="soon-event-info-label text-xl font-semibold">{{ $soon->fecha }}</div>
                 </div>
-                <div class="soon-event-info">
-                    <div class="soon-event-info-label">{{$soon->titulo}}</div>
-                    <div class="tarjet-event-buttons">
-                        <a href="{{route('cliente.show', $soon->id)}}"><button class="tarjet-event-button" id="delete">Inscribirme</button></a>
+            
+                <!-- Event Info -->
+                <div class="soon-event-info flex-1">
+                    <div class="soon-event-info-label text-lg font-bold text-gray-700">{{ $soon->titulo }}</div>
+                    <div class="tarjet-event-buttons mt-4">
+                        <a href="{{ route('cliente.show', $soon->id) }}">
+                            <button class="tarjet-event-button bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+                                Inscribirme
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
             @endforeach
         </section>
-        <div class="eventos-title">Eventos en los ha participado</div>
-        <section class="eventos">
+        <div class="text-xl font-semibold mt-10 mb-4">Eventos en los ha participado</div>
+        <section class="contenedor-mov grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 eventos" id="eventos">
             @foreach ($events as $event)
-                <div class="tarjet-event" id="1">
-                    <div class="tarjet-event-name">{{$event->titulo}}</div>
-                    <div class="tarjet-event-info">{{$event->subtitulo}} </div>
+                <div class="bg-white shadow-md rounded-lg p-6 transition transform hover:-translate-y-2 hover:shadow-xl animate-fade-in tarjet-event" id="1">
+                    <div class="text-lg font-semibold mb-2">{{$event->titulo}}</div>
+                    <div class="text-gray-600 mb-4">{{$event->subtitulo}} </div>
                     @if ($event->images->count() > 0)
                         @php
                             $imagePath = 'storage/' . str_replace('\\', '/', $event->images->first()->image);
                         @endphp
-                        <img class="tarjet-event-image" src="{{ asset($imagePath) }}">
+                        <img class="w-full h-40 object-cover rounded-lg mb-4" src="{{ asset($imagePath) }}">
                     @endif
-                    <div class="tarjet-event-buttons">
-                        <a href="{{route('cliente.eventshow', $event->id)}}"><button class="tarjet-event-button">Ver</button></a>
+                    <div class="flex space-x-4 tarjet-event-buttons-mov">
+                        <a href="{{route('cliente.eventshow', $event->id)}}"><button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-10 rounded">Ver</button></a>
                     </div>
                     <script src="{{ asset('js/Quiz.js') }}"></script>
                 </div>
             @endforeach
         </section>
-        <div class="tarjet-event-more">
-            <button class="tarjet-event-button" id="verMasBtn">Ver más</button>
-            <button class="tarjet-event-button" id="verMenosBtn">Ver menos</button>
+        <div class="text-center mt-10">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded tarjet-event-button" id="verMasBtn">
+                Ver más
+            </button>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded tarjet-event-button" id="verMenosBtn">
+                Ver menos
+            </button>
         </div>
         <script src="{{ asset('js/bucle.js ') }}"></script>
     </main>

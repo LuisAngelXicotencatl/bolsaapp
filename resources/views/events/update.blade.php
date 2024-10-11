@@ -1,67 +1,87 @@
 @extends('layouts.plantilla')
+
 @section('title', $event->titulo)
+
 @section("content")
-    <main>
-        <div class="update-content">
-            <div class="update-title">{{$event->titulo}}</div>
-            <div class="update-title">Evento con el Id- {{$event->id}} y  con la fecha de {{$event->fecha}}</div>
-            <form action="{{route('event.destroy', $event->id)}}" method="POST">
-                @csrf
-                @method('delete')
-                <button class="tarjet-event-button-deletenew" type="submit">Eliminar</button>
-            </form>
-        </div>
-        <div class="update-content">
-            <form action="{{route('Event.updateProcess', $event->id)}}" method="post">
-                @csrf
-                @method('put')
-                <!--Titulo-->
-                <div class="update-event-content">
-                    <Label class="update-event-label">Titulo</Label>
-                    <input class="update-event-title"  name="titulo" value="{{old('titulo',$event->titulo)}}">
-                </div>
+<main class="bg-gray-50 p-6 rounded-lg shadow-md">
+    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-300 mb-6">
+        <div class="text-xl font-semibold text-gray-800 mb-4">{{$event->titulo}}</div>
+        <div class="text-lg text-gray-600 mb-4">Evento con el Id- {{$event->id}} y con la fecha de {{$event->fecha}}</div>
+        <form action="{{route('event.destroy', $event->id)}}" method="POST">
+            @csrf
+            @method('delete')
+            <button class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors" type="submit">Eliminar</button>
+        </form>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
+        <form action="{{route('Event.updateProcess', $event->id)}}" method="post" class="space-y-4">
+            @csrf
+            @method('put')
+
+            <!-- Titulo -->
+            <div>
+                <label class="block text-gray-700 font-semibold">Título</label>
+                <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" 
+                       name="titulo" value="{{old('titulo', $event->titulo)}}">
                 @error('titulo')
-                <span>*{{$message}}</span>
+                    <span class="text-red-500 text-sm">*{{ $message }}</span>
                 @enderror
-                <!--subtitulo-->
-                <div class="update-event-content">
-                    <Label class="update-event-label">Subitulo</Label>
-                    <input class="update-event-bubtitle" name="subtitulo" value="{{old('subtitulo',$event->subtitulo)}}">
-                </div>
+            </div>
+
+            <!-- Subtitulo -->
+            <div>
+                <label class="block text-gray-700 font-semibold">Subtítulo</label>
+                <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" 
+                       name="subtitulo" value="{{old('subtitulo', $event->subtitulo)}}">
                 @error('subtitulo')
-                    <br>
-                    <span>*{{$message}}</span>
-                    <br>
+                    <span class="text-red-500 text-sm">*{{ $message }}</span>
                 @enderror
-                <!--descripcion-->
-                <div class="update-event-content">
-                    <label class="update-event-label">Descripcion</label>
-                    <textarea  name="descripcion" rows="2">{{old('avatar', $event->descripcion)}}</textarea>
-                </div>
+            </div>
+
+            <!-- Descripción -->
+            <div>
+                <label class="block text-gray-700 font-semibold">Descripción</label>
+                <textarea class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" 
+                          name="descripcion" rows="2">{{old('descripcion', $event->descripcion)}}</textarea>
                 @error('descripcion')
-                    <span>*{{$message}}</span>
+                    <span class="text-red-500 text-sm">*{{ $message }}</span>
                 @enderror
-                <!--detalles-->
-                <div class="event-i-details">
-                    <div class="update-event-info event-i-academias">
-                        <li>
-                            <ul>Fecha: <input name="fecha" value="{{old('avatar', $event->fecha)}}"></ul>
-                            @error('fecha')
-                                <span>*{{$message}}</span>
-                            @enderror
-                            <ul>Lugar: <input  name="lugar" value="{{old('avatar', $event->lugar)}}"></ul>
-                            @error('lugar')
-                                <span>*{{$message}}</span>
-                            @enderror
-                            <ul>Premio: <input name="premio" value="{{old('avatar', $event->premio)}}"></ul>
-                            @error('premio')
-                                <span>*{{$message}}</span>
-                            @enderror
-                        </li>
-                    </div>
+            </div>
+
+            <!-- Detalles -->
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-semibold">Fecha</label>
+                    <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" 
+                           name="fecha" value="{{old('fecha', $event->fecha)}}">
+                    @error('fecha')
+                        <span class="text-red-500 text-sm">*{{ $message }}</span>
+                    @enderror
                 </div>
-                <button class="tarjet-event-button-deleteupdate" type="submit">Actualizar informacion</button>
-            </form>
-        </div>
-    </main>
+
+                <div>
+                    <label class="block text-gray-700 font-semibold">Lugar</label>
+                    <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" 
+                           name="lugar" value="{{old('lugar', $event->lugar)}}">
+                    @error('lugar')
+                        <span class="text-red-500 text-sm">*{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-semibold">Premio</label>
+                    <input class="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600" 
+                           name="premio" value="{{old('premio', $event->premio)}}">
+                    @error('premio')
+                        <span class="text-red-500 text-sm">*{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Botón de Actualizar -->
+            <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors mt-4" type="submit">Actualizar información</button>
+        </form>
+    </div>
+</main>
 @endsection

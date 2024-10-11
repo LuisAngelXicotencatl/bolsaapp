@@ -132,7 +132,9 @@ Route::delete('inicio/cliente/event/vercita/delete/{id}', [ClienteController::cl
 
 
 
-
+Route::get('Pruebas/QR', function () {
+    return view('clientes.qr');
+});
 
 
 

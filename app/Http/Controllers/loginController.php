@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\DB;
 
 class loginController extends Controller
@@ -110,19 +111,71 @@ class loginController extends Controller
         ]);
     }
     }
-    /*
-    public function login(Request $request){
-        /*$credentials = [
-            "email" => $request->email,
-            "password" => $request->password,
-        ];
-        $remember = $request->has('remember');
 
-        if(Auth::attempt($credentials, $remember)){
-            $request->session()->regenerate();
-            return redirect()->intended(route('Event.index'));
-        }else{
-            return redirect()->route('inicio.formlogin');
+
+    /**/
+    public function APIregister(Request $request) {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+    
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->save();
+    
+        Auth::login($user);
+    
+        return response()->json([
+            'message' => 'Registro exitoso y usuario autenticado',
+            'user' => $user,
+            'token' => $user->createToken('API Token')->plainTextToken,
+        ], 201);
+    }
+
+    public function APIlogin(Request $request) {
+        // Validación de credenciales
+        $credentials = $request->only('email', 'password');
+
+        // Intento de autenticación
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['error' => 'Credenciales inválidas'], 401);
         }
+        // Obtener el usuario autenticado
+        $user = Auth::user();
+
+        // Retornar respuesta JSON con el token y detalles del usuario
+        return response()->json([
+            'message' => 'Login exitoso',
+            'user' => $user,
+            'token' => $user->createToken('API Token')->plainTextToken,
+        ], 200);
+    }
+    
+
+    /*public function APIlogin(Request $request) {
+        // Validación de credenciales
+        $credentials = $request->only('email', 'password');
+
+        // Intento de autenticación
+        if (!Auth::attempt($credentials)) {
+            return response()->json(['error' => 'Credenciales inválidas'], 401);
+        }
+
+        // Obtener el usuario autenticado
+        $user = Auth::user();
+
+        // Generar token de API usando Sanctum
+        $token = "jnfjnjdfnksdj";
+
+        // Retornar respuesta JSON con el token y detalles del usuario
+        return response()->json([
+            'message' => 'Login exitoso',
+            'user' => $user,
+            'token' => $token,
+        ], 200);
     }*/
 }
