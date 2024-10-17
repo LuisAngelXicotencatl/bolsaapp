@@ -21,4 +21,11 @@ class Empresa extends Model
     public function eventEmpresa() {
         return $this->hasMany(EventDate::class);
     }
+
+    public function Eventprivate()
+    {
+        return $this->belongsToMany(Eventprivate::class);
+    }
+
+    
 }

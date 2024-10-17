@@ -5,12 +5,12 @@
         <!--Nosotros-->
         <div class="flex flex-col lg:flex-row items-center bg-white p-6 lg:p-10 rounded-lg shadow-lg">
             <div class="lg:w-2/3 space-y-4">
-                <div class="text-2xl lg:text-3xl font-bold text-gray-800">Bolsa de trabajo FCC</div>
+                <div class="text-2xl lg:text-3xl font-bold text-gray-800">{{$bolsainfo->titulo}}</div>
                 <div class="text-gray-600">
-                    La Bolsa de Trabajo de la Facultad de Ciencias de la Computación tiene el compromiso de ser un centro de información y consulta que vincule a nuestros alumnos y egresados con las necesidades profesionales de las empresas y organizaciones, brindando una alternativa viable y sustentable que cubra el perfil que solicitan.
+                    {{ $bolsainfo->descripcion }}
                 </div>
             </div>
-            <img src="{{ asset('images/empresas/buap.png') }}" alt="" class="lg:w-1/3 w-2/3 mt-6 lg:mt-0 lg:ml-6 object-contain">
+            <img src="{{ $bolsainfo->logo ? asset('storage/' . $bolsainfo->logo) : asset('images/empresas/buap.png') }}" alt="" class="lg:w-1/3 w-2/3 mt-6 lg:mt-0 lg:ml-6 object-contain">
         </div>
         <!--EVENTOS-->
         <div class="text-xl font-semibold mt-10 mb-4">Eventos pasados</div>
@@ -49,12 +49,12 @@
         <section class="coordinator-container bg-white shadow-md rounded-lg p-10 mt-10" id="cordinador">
             <div class="flex flex-col md:flex-row items-center md:items-start">
                 <div class="coordinator-image mb-10 md:mb-0 md:mr-10">
-                    <img src="{{ asset('images/ejm2.jpg') }}" id="img4" alt="Foto del coordinador" class="w-150 h-48 object-cover rounded-xl border border-gray-300">
+                    <img src="{{ $homeinfo->foto ? asset('storage/' . $homeinfo->foto) : asset('images/ejm2.jpg') }}" id="img4" alt="Foto del coordinador" class="w-150 h-48 object-cover rounded-xl border border-gray-300">
                 </div>
                 <div class="coordinator-info text-gray-800">
-                    <h2 class="text-2xl font-semibold text-blue-700 mb-2">Coordinadora Bolsa de Trabajo</h2>
-                    <h2 class="text-xl font-medium text-gray-700 mb-4">Dra. Patricia Silva Sánchez</h2>
-                    <p class="mb-4 text-gray-600">Tenemos más de 100 empresas globales vinculadas a nuestra Bolsa de Trabajo. Tenemos la fortuna de tener ese acercamiento con cada empresa que quiere apoyar y aportar a nuestra comunidad. Empresas que ofrecen prácticas profesionales y servicio social, además de vacantes, realizamos convenios legales para asegurar los beneficios oficialmente por ambas partes.</p>
+                    <h2 class="text-2xl font-semibold text-blue-700 mb-2">{{ $homeinfo->titulo }}</h2>
+                    <h2 class="text-xl font-medium text-gray-700 mb-4">{{ $homeinfo->nombre }}</h2>
+                    <p class="mb-4 text-gray-600">{{ $homeinfo->mensaje }}</p>
                     <p class="text-gray-600">Contacto: 
                         <a href="mailto:bolsadetrabajo.fcc@correo.buap.mx" class="text-blue-600 hover:text-blue-800">bolsadetrabajo.fcc@correo.buap.mx</a>
                     </p>

@@ -7,8 +7,10 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\eventprivateController;
 use App\Models\Empresa;
 use App\Models\Event;
+use App\Models\home;
 use Illuminate\Support\Facades\Artisan;
 
 /*
@@ -139,25 +141,24 @@ Route::get('Pruebas/QR', function () {
 
 
 
+/*
+|--------------------------------------------------------------------------
+| Event privates
+|--------------------------------------------------------------------------
+|
+*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::put("inicio/Administrador/eventprivate/nuevo/eventoprivateProcess", [eventprivateController::class, 'nuevoEventoprivate'])->name('Eventprivate.nuevoEventoproces')->middleware('auth');
+/*Nuevo evento*/
+Route::get("inicio/Administrador/eventprivate/nuevo/eventoprivate", [eventprivateController::class, "nuevoEventoprivateform"])->name('Eventprivate.nuevoEvento')->middleware('auth');
+/*Mostrar detalles de evento*/
+Route::get("inicio/Administrador/eventprivate/{id}", [eventprivateController::class, "show"]) -> name('Eventprivate.show')->middleware('auth');
+Route::get("inicio/Administrador/homeedit", [eventprivateController::class, "editindex"]) -> name('Eventprivate.editindex')->middleware('auth');
+Route::put('/bolsa-trabajo/update', [HomeController::class, 'updateBolsaTrabajo'])->name('updateBolsaTrabajo');
+Route::put('/coordinador/update', [HomeController::class, 'updateCoordinador'])->name('updateCoordinador');
+Route::get('/videocall', function () {
+    return view('video');
+});
 
 
 

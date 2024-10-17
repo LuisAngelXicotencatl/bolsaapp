@@ -11,6 +11,9 @@ use App\Models\EventEmpresa;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 use App\Exports\EventDatesExport;
+use App\Models\bolsa;
+use App\Models\Eventprivate;
+use App\Models\home;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EventController extends Controller
@@ -18,12 +21,16 @@ class EventController extends Controller
     public function index(){
         $events =  Event::with('images')->where('status', 1)->orderBy('id', 'desc')->get();
         $soons =  Event::where('status', 0)->orderBy('id', 'desc')->get();
-        return view('events.index', compact('events', 'soons'));
+        $private =  Eventprivate::where('status', 0)->orderBy('id', 'desc')->get();
+        return view('events.index', compact('events', 'soons','private'));
     }
+    
 
     public function default(){
         $events =  Event::with('images')->where('status', 1)->orderBy('id', 'desc')->get();
-        return view('home.index', compact('events'));
+        $bolsainfo = bolsa::first();
+        $homeinfo = home::first();
+        return view('home.index', compact('events','bolsainfo', 'homeinfo'));
     }
 
     public function show($id){
@@ -39,10 +46,12 @@ class EventController extends Controller
         /*return $images;*/
         return view('events.show', compact('event', 'eventEmpresas', 'images'));
     }
+
     public function update($id){
         $event = Event::find($id);
         return view('events.update', compact('event'));
     }
+    
     public function updateProcess(UpdateEvent $request,Event $id){
         $id->titulo = $request->titulo;
         $id->subtitulo = $request->subtitulo;
