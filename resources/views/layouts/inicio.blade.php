@@ -46,7 +46,7 @@
                 <p class="text-gray-400 mb-1">Facultad de Computación</p>
                 <p class="text-gray-400 mb-1">Benemérita Universidad Autónoma de Puebla</p>
                 <p class="text-gray-400 mb-1">Vinculación Facultad de Computación</p>
-                <p class="text-gray-400">Version beta1.0</p>
+                <p class="text-gray-400">Version beta 2.0</p>
             </div>
         </div>
     

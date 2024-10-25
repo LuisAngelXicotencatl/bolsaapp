@@ -11,13 +11,19 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CitaTomadaMail;
+use App\Models\Dateprivate;
+use App\Models\Empresa;
+use App\Models\EventpDatep;
+use App\Models\Eventprivate;
 
 class ClienteController extends Controller
 {
     public function index(){
+        $empresaId = session('empresa_id');
+        $privates =  Eventprivate::where('empresa', $empresaId)->orderBy('id', 'desc')->get();
         $events =  Event::with('images')->where('status', 1)->orderBy('id', 'desc')->get();
         $soons =  Event::where('status', 0)->orderBy('id', 'desc')->get();
-        return view('clientes.index', compact('events', 'soons'));
+        return view('clientes.index', compact('events', 'soons','privates'));
     }
 
     public function show($id){
@@ -131,5 +137,75 @@ class ClienteController extends Controller
         $to = "deycek82@gmail.com";
         Mail::to($to)->send(new CitaTomadaMail($idCorreo, $titulo,$fechaEvento,$lugar,$fechaCita,$hora,$empresa));
         return redirect()->route('cliente.show', $newvalue);
+    }
+
+    /***/
+    public function showeventprivate($id){
+
+        $event = Eventprivate::find($id);
+
+        $empresaid = $event->empresa;
+
+        $empresa = Empresa::find($empresaid);
+
+        return view('clientes.showprivate', compact('event', 'empresa'));
+    }
+
+    public function newdateprivate($id){
+        $event = Eventprivate::find($id);
+        /*$EventDate = EventpDatep::where('eventprivate_id', $id)->orderBy('id', 'desc')->get();*/
+        $EventDates = EventpDatep::with(['Eventprivate', 'Dateprivate'])
+                ->where('eventprivate_id', $id)
+                ->get();
+        /*return $EventDate;*/
+        return view('clientes.dateprivate', compact('event','EventDates'));
+    }
+
+    public function adddateprivateprocess(Request $request,Eventprivate $id){
+        $dateprivate = new Dateprivate();
+        $dateprivate->fecha = $request->fecha;
+        $dateprivate->hora = $request->hora;
+        $dateprivate->save();
+        $iddate = $dateprivate->id;
+        $idevent = $id->id;
+        /*return $iddate;*/
+
+        $eventdate = new EventpDatep();
+        $eventdate->dateprivate_id = $iddate;
+        $eventdate->eventprivate_id = $idevent;
+        $eventdate->save();
+
+        /*return $EventDate;*/
+        return redirect()->route('cliente.Eventprivate.show' ,$idevent);
+        /*return view('events.dateprivate', compact('event','EventDates'));*/
+    }
+
+    public function destroyDateprivate(Request $request, EventpDatep $eventDatep)
+    {
+        $eventDatep->delete();
+        
+        $dateprivate = Dateprivate::where('id', $request->dateid)->first();
+        if ($dateprivate) {
+            $dateprivate->delete();
+        }
+
+        $eventid = $request->eventid;
+
+        // Redirigir a la ruta correspondiente después de la eliminación
+        return redirect()->route('cliente.Eventprivate.show' ,$eventid);
+    }
+
+    public function updateeventprivate($id){
+        $event = Eventprivate::find($id);
+        return view('clientes.updateeventprivate', compact('event'));
+    }
+
+    public function Eventprivateupdateevent(Request $request, Eventprivate $id){
+        $id->titulo = $request->titulo;
+        $id->subtitulo = $request->subtitulo;
+        $id->descripcion = $request->descripcion;
+        $id->save();
+        
+        return redirect()->route('cliente.Eventprivate.show', $id->id);
     }
 }

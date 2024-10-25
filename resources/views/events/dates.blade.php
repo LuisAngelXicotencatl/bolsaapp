@@ -10,15 +10,19 @@
         <p class="event-i-descripcion text-gray-700 mt-4">{{ $event->descripcion }}</p>
         <div class="event-i-details bg-gray-100 p-4 rounded-lg shadow-sm mt-6">
             <div class="event-i-info">
-                <li class="text-gray-700">
-                    <ul>Fecha: {{ $event->fecha }}</ul>
-                    <ul>Lugar: {{ $event->lugar }}</ul>
-                </li>
+                <ul class="list-none text-gray-700">
+                    <li>Fecha: {{ $event->fecha }}</li>
+                    <li>Lugar: {{ $event->lugar }}</li>
+                </ul>
             </div>
         </div>
         <div class="mt-6 space-x-4">
-            <a class="buttonexcel" href="{{route('date.new', $event->id)}}"><button class="tarjet-event-button-delete bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700" type="submit">Nuevo horario</button></a>
-            <a class="buttonexcel" href="{{ route('event.export', $event->id) }}"><button class="tarjet-event-button bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700">Descargar Excel</button></a>
+            <a class="buttonexcel" href="{{route('date.new', $event->id)}}">
+                <button class="tarjet-event-button-delete bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700" type="submit">Nuevo horario</button>
+            </a>
+            <a class="buttonexcel" href="{{ route('event.export', $event->id) }}">
+                <button class="tarjet-event-button bg-gray-600 text-white py-2 px-4 rounded-lg hover:bg-gray-700">Descargar Excel</button>
+            </a>
         </div>
     </div>
 
@@ -26,7 +30,7 @@
     @if($eventDates->count() > 0)
     <section class=" grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
         @foreach($eventDates as $eventDate)
-            <div class="p-6 rounded-lg shadow-md border border-gray-300">
+            <div class="p-6 rounded-lg shadow-md border border-gray-300">Cita
                 <div class="text-gray-700">
                     <div >{{ $eventDate->date->fecha }}</div>
                     <div >{{ $eventDate->date->hora }}</div>

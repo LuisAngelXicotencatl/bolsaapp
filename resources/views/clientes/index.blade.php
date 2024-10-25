@@ -5,8 +5,26 @@
     <main>
         <div class="text-2xl font-bold text-center mb-6 animate-fade-i">Bienvenido, {{ session('empresa_name')}}.
         </div>
+        @foreach ($privates as $private)
+        @if($private !== null && $private !== '')
+            <div class="text-xl font-semibold mb-4">Evento {{ session('empresa_name')}}</div>
+            <div class="text-gray-600 mb-4">En esta area encontrara eventos privados disponibles para editar, fechas,descripcion y cronograma.</div>
+        @endif
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white shadow-md rounded-lg p-6 transition transform hover:-translate-y-2 hover:shadow-xl animate-fade-in">
+                    <div class="text-gray-600 mb-2">{{ $private->fecha }} - {{ $private->empresa}}</div>
+                    <div class="text-lg font-semibold mb-4">{{ $private->titulo }}</div>
+                        <a href="{{ route('cliente.Eventprivate.show', $private->id) }}">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                                Ver
+                            </button>
+                        </a>
+                    </div>
+                </div>
+        </section>
+        @endforeach
         <div class="text-xl font-semibold mt-10 mb-4">Proximos eventos</div>
-        <section class="soon">
+        <section class="soon ">
             @foreach ($soons as $soon)
             <div class="soon-event bg-white shadow-md rounded-lg p-4 mb-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
                 <!-- Event Date -->

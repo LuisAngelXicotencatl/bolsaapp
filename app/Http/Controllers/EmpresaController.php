@@ -42,7 +42,7 @@ class EmpresaController extends Controller
     $egregar = new Empresa();
     $egregar->Nombre = $request->nombre;
     $egregar->Descripcion = $request->descripcion;
-    $egregar->Email = strtolower(str_replace(' ', '.', $request->nombre)) . '@fcc_vinculacion.com';
+    $egregar->Email = strtolower(str_replace(' ', '.', $request->nombre)) . '_vinculacion';
 
     $plainPassword = Str::random(10);
     $egregar->Contrasena = $plainPassword;

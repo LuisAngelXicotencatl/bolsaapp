@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.cliente')
 @section('title', $event->titulo)
 @section("content")
 <main>
@@ -16,21 +16,16 @@
             </ul>
         </div>
         <div class="mt-6 space-y-4">
-            <a href="{{ route('Eventprivate.privatenewdate', $event->id) }}">
+            <a href="{{ route('cliente.Eventprivateform.update', $event->id) }}">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                     Fechas
                 </button>
             </a>
-            <a href="{{ route('Eventprivate.updateeventprivate', $event->id) }}">
+            <a href="{{ route('cliente.editeventform', $event->id) }}">
                 <button class="bg-green-700 hover:bg-yellow-700 text-white py-2 px-4 rounded">
                     Modificar
                 </button>
             </a>
-            <form action="{{ route('destroyeventprivate', $event->id) }}" method="POST">
-                @csrf
-                @method('delete')
-                <button class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors" type="submit">Eliminar</button>
-            </form>
         </div>
     </div>
 </main>

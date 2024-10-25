@@ -8,6 +8,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\eventprivateController;
+use App\Http\Controllers\VideoCallController;
 use App\Models\Empresa;
 use App\Models\Event;
 use App\Models\home;
@@ -24,10 +25,13 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
+
+/*Inicio*/
 Route::get('/', function () {
     return view('home.index');
 });
 
+/*Generar carpeta */
 Route::get('storage-link', function () {
     try {
         if (file_exists(public_path('storage'))) {
@@ -43,7 +47,7 @@ Route::get('storage-link', function () {
 });
 /*
 |--------------------------------------------------------------------------
-| Controladores para el proyecto
+| Administrador
 |--------------------------------------------------------------------------
 |
 */
@@ -79,12 +83,7 @@ Route::get("inicio/Administrador/event/nuevo/evento", [EventController::class, "
 /*Agregar nuevo evento*/
 Route::put("inicio/Administrador/event/nuevo/eventoProcess", [EventController::class, 'nuevoEventoProcess'])->name('Event.nuevoEventoProcess')->middleware('auth');
 Route::get('/evento/{id}/export', [EventController::class, 'export'])->name('event.export');
-
-/*
-|--------------------------------------------------------------------------
-| Empresas
-|--------------------------------------------------------------------------
-*/
+/*Empresa*/
 Route::get("Empresas", [EmpresaController::class, "index"]) -> name('Empresa.index')->middleware('auth');
 Route::get("Empresas/Administrador/agregar", [EmpresaController::class, "agregar"]) -> name('Empresa.new')->middleware('auth');
 Route::put("inicio/Administrador/agregar/Process", [EmpresaController::class, 'agregarEmpresaProcess'])->name('Empresa.agregarProcess')->middleware('auth');
@@ -105,6 +104,10 @@ Route::get("inicio/Administrador/default/event/{id}", [EmpresaController::class,
 Route::get("inicio/questions", [HomeController::class, "questions"]) -> name('index.questions');
 Route::Post("inicio/questions/process", [HomeController::class, "questionsP"]) -> name('index.questionsP');
 Route::get("inicio/sugerencia", [HomeController::class, "sugerenciaseed"]) -> name('index.sugerenciaseed');
+/*Modificar inicio */
+Route::put('/coordinador/update', [HomeController::class, 'updateCoordinador'])->name('updateCoordinador');
+Route::put('/bolsa-trabajo/update', [HomeController::class, 'updateBolsaTrabajo'])->name('updateBolsaTrabajo');
+
 /*
 |--------------------------------------------------------------------------
 | registro
@@ -118,8 +121,6 @@ Route::post('inicio/Administrador/login/process', [loginController::class, 'logi
 Route::post('inicio/Administrador/loginempresa/process', [loginController::class, 'loginEmpresa'])->name('inicio.loginEmpresa');
 Route::get("inicio/Administrador/exit", [loginController::class, "logout"])->name('inicio.logout');
 Route::get("inicio/cliente/exit", [loginController::class, "formloginempresa"])->name('inicio.logoutEmpresa');
-
-
 /*
 |--------------------------------------------------------------------------
 | Clientes
@@ -132,78 +133,32 @@ Route::post('inicio/cliente/event/Agendarcita/{id}', [ClienteController::class, 
 Route::get('inicio/cliente/event/vercita/{id}', [ClienteController::class, 'verCita'])->name('vercita');
 Route::delete('inicio/cliente/event/vercita/delete/{id}', [ClienteController::class, 'destroymicita'])->name('destroymicita');
 
-
-
-Route::get('Pruebas/QR', function () {
-    return view('clientes.qr');
-});
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Event privates
 |--------------------------------------------------------------------------
 |
 */
-
 Route::put("inicio/Administrador/eventprivate/nuevo/eventoprivateProcess", [eventprivateController::class, 'nuevoEventoprivate'])->name('Eventprivate.nuevoEventoproces')->middleware('auth');
 /*Nuevo evento*/
 Route::get("inicio/Administrador/eventprivate/nuevo/eventoprivate", [eventprivateController::class, "nuevoEventoprivateform"])->name('Eventprivate.nuevoEvento')->middleware('auth');
 /*Mostrar detalles de evento*/
 Route::get("inicio/Administrador/eventprivate/{id}", [eventprivateController::class, "show"]) -> name('Eventprivate.show')->middleware('auth');
 Route::get("inicio/Administrador/homeedit", [eventprivateController::class, "editindex"]) -> name('Eventprivate.editindex')->middleware('auth');
-Route::put('/bolsa-trabajo/update', [HomeController::class, 'updateBolsaTrabajo'])->name('updateBolsaTrabajo');
-Route::put('/coordinador/update', [HomeController::class, 'updateCoordinador'])->name('updateCoordinador');
-Route::get('/videocall', function () {
-    return view('video');
-});
+Route::delete('inicio/Administrador/eventprivat/delete/{id}', [eventprivateController::class, 'destroyeventprivate'])->name('destroyeventprivate')->middleware('auth');
+Route::get("inicio/Administrador/eventprivat/editevent/{id}", [eventprivateController::class, "updateeventprivate"])->name('Eventprivate.updateeventprivate')->middleware('auth');
+Route::put("inicio/Administrador/eventprivat/updateEvent/{id}", [eventprivateController::class, "Eventprivateupdateevent"]) -> name('Eventprivate.updateevent')->middleware('auth');
+Route::get("inicio/Administrador/eventprivate/date/{id}", [eventprivateController::class, "newdateprivate"]) -> name('Eventprivate.privatenewdate')->middleware('auth');
+Route::put("inicio/Administrador/eventprivat/newdateprivateprocess/{id}", [eventprivateController::class, "newdateprivateprocess"]) -> name('Eventprivate.newdateprivateprocess')->middleware('auth');
+Route::delete('inicio/Administrador/eventprivat/deleteeventprivate/{id}', [eventprivateController::class, 'destroyDateprivate'])->name('eventprivate.destroyDateprivate')->middleware('auth');
 
 
+/*Cliente show*/
+Route::get("inicio/cliente/eventprivate/{id}", [ClienteController::class, "showeventprivate"]) -> name('cliente.Eventprivate.show');
+Route::get("inicio/cliente/eventprivate/editedate/{id}", [ClienteController::class, "newdateprivate"])->name('cliente.Eventprivateform.update');
+Route::put("inicio/cliente/eventprivate/updateEvent/{id}", [ClienteController::class, "adddateprivateprocess"]) -> name('cliente.Eventprivateprocess.update');
+Route::delete('inicio/cliente/eventprivate/deleteeventprivate/{id}', [ClienteController::class, 'destroyDateprivate'])->name('cliente.destroyDateprivate');
 
 
-
-
-
-
-
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Rutas similares
-|--------------------------------------------------------------------------
-|
-| Las rutas se leeran de ariba hacia abajo por lo que si exite un subgrupo como curso/create y no lo detecte como variable
-| solo se pone primero
-| Si una variable no sible se llenara se podra poner ? al final de la variable
-|
-*/
-
-Route::get('cursos', function () {
-    return "Bienvenido";
-});
-
-Route::get('cursos/create', function () {
-    return "En esta pagina podras crear un curso";
-    
-});
-
-Route::get('controlador', HomeController::class);
-
-Route::get("controladorcurso", [CursoController::class, "index"]) -> name('cursps.index');
-Route::get("controladorcurso/create", [CursoController::class, "create"]) -> name('cursps.create');
-Route::get("controladorcurso/{id}", [CursoController::class, "show"]) -> name('cursps.show');
-Route::Post("cursos", [CursoController::class, 'store'])->name('cursos.store');
-Route::get("cursosE/{id}/edit", [CursoController::class, 'edit'])->name('cursos.edit');
-Route::put("cursosProceso/{id}", [CursoController::class, 'update'])->name('cursos.update');
-Route::delete("cursoProceso/{id}", [CursoController::class, 'destroy'])->name('curso.destroy');
-
-/*Route::controller(CursoController::class)->group(function(){
-    Route::get("controladorcurso", "index");
-    Route::get("controladorcurso/create", "create");
-    Route::get("controladorcurso/{curso}", "show");
-});*/
+Route::get("inicio/cliente/eventprivate/editeventform/{id}", [ClienteController::class, "updateeventprivate"])->name('cliente.editeventform');
+Route::put("inicio/cliente/eventprivate/updateEventprocess/{id}", [ClienteController::class, "Eventprivateupdateevent"]) -> name('cliente.updateEventprocess');

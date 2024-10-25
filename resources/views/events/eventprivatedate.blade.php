@@ -16,7 +16,7 @@
             </ul>
         </div>
         <div class="mt-6 space-y-4">
-            <a href="{{ route('Eventprivate.privatenewdate', $event->id) }}">
+            <a href="{{ route('Event.dates', $event->id) }}">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                     Fechas
                 </button>

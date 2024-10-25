@@ -16,4 +16,11 @@ class Dateprivate extends Model
     public function empresa() {
         return $this->belongsTo(Empresa::class);
     }
+
+    public function Eventsprivate()
+    {
+        return $this->belongsToMany(Eventprivate::class);
+    }
+
+
 }

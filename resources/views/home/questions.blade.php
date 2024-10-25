@@ -9,13 +9,7 @@
             <div class="text-gray-700 leading-relaxed mb-4">
                 Nos complace informarles que el sistema "Bolsa de Trabajo" se encuentra actualmente en fase de desarrollo. Esta etapa nos permite optimizar las funcionalidades del sistema.
                 <br><br>
-                Dada que es esta una versión preliminar, es posible que los usuarios encuentren ocasionalmente errores o limitaciones en ciertas opciones. Estamos trabajando para identificar y resolver cualquier inconveniente que pueda surgir durante esta fase.
-                <br><br>
-                Es importante destacar que, en su estado actual, el sistema está diseñado principalmente para su uso en dispositivos de escritorio. La versión móvil se encuentra en desarrollo y, por lo tanto, algunas características pueden no estar disponibles o funcionar de manera óptima en dispositivos móviles.
-                <br><br>
                 Agradecemos su comprensión y paciencia durante este período de desarrollo. Les invitamos cordialmente a compartir sus observaciones, sugerencias y comentarios, ya que estos son fundamentales para el avance y mejora de nuestro sistema.
-                <br><br>
-                Su retroalimentación nos ayudará a perfeccionar la "Bolsa de Trabajo" y a garantizar que se cumplan sus expectativas.
                 <br><br>
                 Quedamos a su disposición para cualquier consulta o aportación que deseen realizar.
             </div>
