@@ -151,6 +151,7 @@ class loginController extends Controller
         return response()->json([
             'message' => 'Login exitoso',
             'user' => $user,
+            'id' => $user->id,
             'token' => $user->createToken('API Token')->plainTextToken,
         ], 200);
     }

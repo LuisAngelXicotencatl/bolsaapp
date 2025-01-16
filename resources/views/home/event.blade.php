@@ -36,9 +36,10 @@
                 @php
                     $imagePath = 'storage/' . str_replace('\\', '/', $image->image);
                 @endphp
-                <img class="event-i-image rounded-lg shadow-md" src="{{ asset($imagePath) }}" alt="Imagen del evento">
+                <img class="event-i-image rounded-lg shadow-md w-full h-48 object-cover" src="{{ asset($imagePath) }}" alt="Imagen del evento">
             @endforeach
         </div>
+        
     </div>
 </main>
 @endsection

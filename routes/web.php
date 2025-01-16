@@ -113,8 +113,8 @@ Route::put('/bolsa-trabajo/update', [HomeController::class, 'updateBolsaTrabajo'
 | registro
 |--------------------------------------------------------------------------
 */
-Route::get("inicio/Administrador/register", [loginController::class, "formRegister"])->name('inicio.registerForm');
-Route::post('inicio/Administrador/register/process', [loginController::class, 'register'])->name('inicio.register');
+/*Route::get("inicio/Administrador/register", [loginController::class, "formRegister"])->name('inicio.registerForm');
+Route::post('inicio/Administrador/register/process', [loginController::class, 'register'])->name('inicio.register');*/
 Route::get("inicio/Administrador/login", [loginController::class, "formlogin"])->name('inicio.formlogin');
 Route::get("inicio/cliente/login", [loginController::class, "formloginempresa"])->name('inicio.formloginempresa');
 Route::post('inicio/Administrador/login/process', [loginController::class, 'login'])->name('inicio.login');
